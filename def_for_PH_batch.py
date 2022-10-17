@@ -14,7 +14,7 @@ def open_partiture(): # запуск партируры
 
 def load_partiture():# проверка на загрузку партритуры
     while True:
-        r = pyautogui.locateOnScreen('por_icon.png', grayscale=True, confidence=.7)
+        r = pyautogui.locateOnScreen('buttons\\por_icon.png', grayscale=True, confidence=.7)
         if r is not None:
             time.sleep(7)
             pyautogui.press('Enter')
@@ -63,7 +63,7 @@ def open_nik(): #запуск плагинов никон
     pyautogui.leftClick()
     time.sleep(3) #пауза для загрузки окна плагинов
     while True: # проверка на окно обновлений и его закрытие
-        r = pyautogui.locateOnScreen('update.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\update.png', grayscale=True, confidence=.9)
         if r is not None:
             pyautogui.press('Esc')
             break
@@ -73,7 +73,7 @@ def open_nik(): #запуск плагинов никон
 
 def custom_but_nik(): #кнопка custon nik
     while True:
-        r = pyautogui.locateOnScreen('custom.png', grayscale=True)
+        r = pyautogui.locateOnScreen('buttons\\custom.png', grayscale=True)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)
@@ -85,7 +85,7 @@ def custom_but_nik(): #кнопка custon nik
 
 def target_filter1_nik(): #кнопка target filter1
     while True:
-        r = pyautogui.locateOnScreen('custom1.png', grayscale=True, confidence=.8)
+        r = pyautogui.locateOnScreen('buttons\\custom1.png', grayscale=True, confidence=.8)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.moveTo(e)
@@ -101,7 +101,7 @@ def target_filter1_nik(): #кнопка target filter1
 
 def target_filter2_nik(): #кнопка target filter2
     while True:
-        r = pyautogui.locateOnScreen('custom2.png', grayscale=True, confidence=.8)
+        r = pyautogui.locateOnScreen('buttons\\custom2.png', grayscale=True, confidence=.8)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.moveTo(e)
@@ -117,7 +117,7 @@ def target_filter2_nik(): #кнопка target filter2
 
 def target_filter3_nik(): #кнопка target filter3
     while True:
-        r = pyautogui.locateOnScreen('custom3.png', grayscale=True, confidence=.8)
+        r = pyautogui.locateOnScreen('buttons\\custom3.png', grayscale=True, confidence=.8)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.moveTo(e)
@@ -133,7 +133,7 @@ def target_filter3_nik(): #кнопка target filter3
 
 def target_filter4_nik(): #кнопка target filter4
     while True:
-        r = pyautogui.locateOnScreen('custom4.png', grayscale=True, confidence=.8)
+        r = pyautogui.locateOnScreen('buttons\\custom4.png', grayscale=True, confidence=.8)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.moveTo(e)
@@ -149,7 +149,7 @@ def target_filter4_nik(): #кнопка target filter4
 
 def target_filter5_nik(): #кнопка target filter5 + избраное
     for p in range(5):
-        r = pyautogui.locateOnScreen('star.png', confidence=.95)
+        r = pyautogui.locateOnScreen('buttons\\star.png', confidence=.95)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.moveTo(e)
@@ -160,7 +160,7 @@ def target_filter5_nik(): #кнопка target filter5 + избраное
             r = None
         time.sleep(0.7)
     while True:
-        r = pyautogui.locateOnScreen('custom5.png', grayscale=True, confidence=.8)
+        r = pyautogui.locateOnScreen('buttons\\custom5.png', grayscale=True, confidence=.8)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.moveTo(e)
@@ -176,7 +176,7 @@ def target_filter5_nik(): #кнопка target filter5 + избраное
 
 def apply_nik():  #кнопка готово плагины никон
     while True:
-        r = pyautogui.locateOnScreen('apply.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\apply.png', grayscale=True, confidence=.9)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)
@@ -238,7 +238,7 @@ def color_correction2():
 
 def open_foto(dir_name,file_nane): # y это путь к папке строкой, x - имя файла
     while True:#кнопка файл
-        r = pyautogui.locateOnScreen('file.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\file.png', grayscale=True, confidence=.9)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)
@@ -247,7 +247,7 @@ def open_foto(dir_name,file_nane): # y это путь к папке строк�
             r = None
     time.sleep(0.6)
     while True:#кнопка open
-        r = pyautogui.locateOnScreen('open.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\open.png', grayscale=True, confidence=.9)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)
@@ -256,7 +256,7 @@ def open_foto(dir_name,file_nane): # y это путь к папке строк�
             r = None
     time.sleep(0.6)
     while True:#кнопка dir
-        r = pyautogui.locateOnScreen('dir.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\dir.png', grayscale=True, confidence=.9)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)
@@ -269,7 +269,7 @@ def open_foto(dir_name,file_nane): # y это путь к папке строк�
     pyautogui.press('enter')
     time.sleep(0.3)
     while True:#кнопка имя файла
-        r = pyautogui.locateOnScreen('file_name.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\file_name.png', grayscale=True, confidence=.9)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)
@@ -291,7 +291,7 @@ def save_photo_close():
 
 def power_off():# выключение компа
     while True:#кнопка пуск
-        r = pyautogui.locateOnScreen('start.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\start.png', grayscale=True, confidence=.9)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)
@@ -300,7 +300,7 @@ def power_off():# выключение компа
             r = None
     time.sleep(0.6)
     while True:#кнопка завершение работы
-        r = pyautogui.locateOnScreen('power_off.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\power_off.png', grayscale=True, confidence=.9)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)

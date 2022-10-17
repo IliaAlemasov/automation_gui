@@ -5,7 +5,7 @@ import pyautogui
 
 def apply_nik():
     while True:
-        r = pyautogui.locateOnScreen('apply.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\apply.png', grayscale=True, confidence=.9)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)
@@ -39,7 +39,7 @@ def open_nik(): #запуск плагинов никон
     pyautogui.leftClick()
     time.sleep(3) #пауза для загрузки окна плагинов
     while True: # проверка на окно обновлений и его закрытие
-        r = pyautogui.locateOnScreen('update.png', grayscale=True, confidence=.7)
+        r = pyautogui.locateOnScreen('buttons\\update.png', grayscale=True, confidence=.7)
         if r is not None:
             pyautogui.press('Esc')
             break
