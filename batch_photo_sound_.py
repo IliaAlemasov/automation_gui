@@ -9,7 +9,7 @@ import pyttsx3
 if __name__ == '__main__':
 
     engine = pyttsx3.init()
-    settings2_soud()
+    settings1_soud()
 
     engine.say("сколько фото обработать?")
     engine.runAndWait()
@@ -29,15 +29,15 @@ if __name__ == '__main__':
     for i in range(xfoto):
         s_time = time.time()#ниже блок кода для обработки
         copy_layer()
-        ph_levels2()
-        open_partiture()
-        load_partiture()
-        after_partiture25()
+        #ph_levels1()
         open_nik()
-        custom_but_nik()
-        target_filter3_nik()
+        target_filter1_nik()
         apply_nik()
         loading_pause()
+        open_partiture()
+        load_partiture()
+        after_partiture40()
+        loading_pause_short()
         #save_photo_close()
         time.sleep(5)
         e_time = time.time()# граница блока обработки

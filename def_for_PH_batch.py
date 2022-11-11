@@ -187,10 +187,10 @@ def apply_nik():  #кнопка готово плагины никон
 
 
 def loading_pause():# пауза для прогрузки долгих операций
-    time.sleep(28)
+    time.sleep(35)
 
 def loading_pause_short():# пауза для прогрузки долгих операций
-    time.sleep(15)
+    time.sleep(6)
 
 
 def ph_levels1():# уровни стандарт 248,1.04,1
