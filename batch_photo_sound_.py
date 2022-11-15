@@ -29,14 +29,14 @@ if __name__ == '__main__':
     for i in range(xfoto):
         s_time = time.time()#ниже блок кода для обработки
         copy_layer()
-        #ph_levels1()
+        ph_levels1()
         open_nik()
         target_filter1_nik()
         apply_nik()
         loading_pause()
         open_partiture()
         load_partiture()
-        after_partiture40()
+        after_partiture25()
         loading_pause_short()
         #save_photo_close()
         time.sleep(5)

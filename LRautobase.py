@@ -2,6 +2,17 @@ import time
 import pyautogui
 import pyttsx3
 
+'''RU Этот скрипт поможет сделать атоматическую базовую пакетную цвето коррекцию в Lightroom.
+Импортируйте фото для обработки в LR, откройте вкладку Develop, выделите первое фото, 
+обязатетельно переключите раскладку клавиатуры на EN. Запустите скрипт, укажите сколько фото
+нужно обработать, паузу для загрузки  - зависит от производительности вашего PC. Переключитесь
+в окно LR и выделите первое фото'''
+
+'''''EN This script will help you do automatic basic batch color correction in Lightroom.
+Import a photo to process in LR, open the Develop tab, select the first photo,
+be sure to switch the keyboard layout to EN. Run the script, specify how many photos
+need to process, pause to loading - depends on the performance of your PC. switch
+into the LR window and select the first photo'''
 
 def loading_pause_def():
     time.sleep(load_pause)
@@ -50,15 +61,3 @@ if __name__ == '__main__':
     engine.say("Шеф все готово, не забудь подкинуть в топку новых фото")
     print('шеф все готово!')
     engine.runAndWait()
-
-'''RU Этот скрипт поможет сделать атоматическую базовую пакетную цвето коррекцию в Lightroom.
-Импортируйте фото для обработки в LR, откройте вкладку Develop, выделите первое фото, 
-обязатетельно переключите раскладку клавиатуры на EN. Запустите скрипт, укажите сколько фото
-нужно обработать, паузу для загрузки  - зависит от производительности вашего PC. Переключитесь
-в окно LR и выделите первое фото'''
-
-'''''EN This script will help you do automatic basic batch color correction in Lightroom.
-Import a photo to process in LR, open the Develop tab, select the first photo,
-be sure to switch the keyboard layout to EN. Run the script, specify how many photos
-need to process, pause to loading - depends on the performance of your PC. switch
-into the LR window and select the first photo'''

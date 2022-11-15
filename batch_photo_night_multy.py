@@ -29,14 +29,14 @@ for o in range(n_photo):
     x = z[v]  # получаем индекс для итерации
     open_foto(y1, x)  # далее алгоритм обработки
     copy_layer()
-
+    ph_levels1()
     open_nik()
     target_filter1_nik()
     apply_nik()
     loading_pause()
     open_partiture()
     load_partiture()
-    after_partiture40()
+    after_partiture25()
     loading_pause_short()
     save_photo_close()  # закрыть и сохранить
     time.sleep(3)
@@ -57,12 +57,12 @@ for o in range(n_photo):
     copy_layer()
     ph_levels1()
     open_nik()
-    target_filter2_nik()
+    target_filter1_nik()
     apply_nik()
     loading_pause()
     open_partiture()
     load_partiture()
-    after_partiture40()
+    after_partiture25()
     loading_pause_short()
     save_photo_close()  # закрыть и сохранить
     time.sleep(3)
@@ -82,12 +82,12 @@ for o in range(n_photo):
     open_foto(y3, x)  # далее алгоритм обработки
     copy_layer()
     open_nik()
-    target_filter2_nik()
+    target_filter1_nik()
     apply_nik()
     loading_pause()
     open_partiture()
     load_partiture()
-    after_partiture40()
+    after_partiture25()
     loading_pause_short()
     save_photo_close()  # закрыть и сохранить
     time.sleep(3)
@@ -106,14 +106,9 @@ for o in range(n_photo):
     x = z[v]  # получаем индекс для итерации
     open_foto(y4, x)  # далее алгоритм обработки
     copy_layer()
-    ph_levels1()
     open_partiture()
     load_partiture()
     after_partiture25()
-    open_nik()
-    target_filter4_nik()
-    apply_nik()
-    loading_pause()
     loading_pause_short()
     save_photo_close()  # закрыть и сохранить
     time.sleep(3)
