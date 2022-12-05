@@ -176,7 +176,7 @@ def target_filter5_nik(): #кнопка target filter5 + избраное
 
 def apply_nik():  #кнопка готово плагины никон
     while True:
-        r = pyautogui.locateOnScreen('buttons\\apply.png', grayscale=True, confidence=.9)
+        r = pyautogui.locateOnScreen('buttons\\apply.png', grayscale=True, confidence=.95)
         if r is not None:
             e = pyautogui.center(r)
             pyautogui.leftClick(e)
@@ -187,7 +187,7 @@ def apply_nik():  #кнопка готово плагины никон
 
 
 def loading_pause():# пауза для прогрузки долгих операций
-    time.sleep(35)
+    time.sleep(18)
 
 def loading_pause_short():# пауза для прогрузки долгих операций
     time.sleep(6)
