@@ -1,8 +1,12 @@
 import time
 import pyautogui
 
+'''It library base value and functional def for easy and fast construction
+ algorithms batch photo production '''
 
-# -----base def & value XY for constration tier 1 -----
+# -----base def & value XY for construction tier 1 -----
+
+
 def delay_before_click():  # пауза перед кликом
     time.sleep(0.1)
 
