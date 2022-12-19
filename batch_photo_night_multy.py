@@ -33,7 +33,7 @@ for o in range(n_photo):
     copy_layer()
     open_partiture()
     load_partiture()
-    after_partiture40()
+    after_partiture25()
     open_nik()
     custom_but_nik()
     target_filter1_nik()
@@ -58,7 +58,7 @@ for o in range(n_photo):
     copy_layer()
     open_partiture()
     load_partiture()
-    after_partiture40()
+    after_partiture25()
     open_nik()
     custom_but_nik()
     target_filter1_nik()
@@ -81,14 +81,18 @@ for o in range(n_photo):
     x = z[v]  # получаем индекс для итерации
     open_foto(y3, x)  # далее алгоритм обработки
     copy_layer()
-    ph_levels1()
-    copy_layer()
     open_partiture()
     load_partiture()
     after_partiture40()
+    loading_pause_short()
+    copy_layer()
+    open_partiture()
+    load_partiture()
+    after_partiture25()
+    loading_pause_short()
     open_nik()
     custom_but_nik()
-    target_filter2_nik()
+    target_filter5_nik()
     apply_nik()
     loading_pause()
     save_photo_close()  # закрыть и сохранить
@@ -110,12 +114,8 @@ for o in range(n_photo):
     copy_layer()
     open_partiture()
     load_partiture()
-    after_partiture40()
-    open_nik()
-    custom_but_nik()
-    target_filter2_nik()
-    apply_nik()
-    loading_pause()
+    after_partiture25()
+    loading_pause_short()
     save_photo_close()  # закрыть и сохранить
     time.sleep(3)
 
@@ -135,7 +135,13 @@ for o in range(n_photo):
     copy_layer()
     open_partiture()
     load_partiture()
+    after_partiture25()
+    loading_pause_short()
+    copy_layer()
+    open_partiture()
+    load_partiture()
     after_partiture40()
+    loading_pause_short()
     save_photo_close()  # закрыть и сохранить
     time.sleep(3)
 
@@ -153,17 +159,20 @@ for o in range(n_photo):
     x = z[v]  # получаем индекс для итерации
     open_foto(y6, x)  # далее алгоритм обработки
     copy_layer()
-    ph_levels1()
     open_nik()
-    target_filter1_nik()
+    target_filter2_nik()
     apply_nik()
     loading_pause()
     open_partiture()
     load_partiture()
     after_partiture40()
     loading_pause_short()
+    open_partiture()
+    load_partiture()
+    after_partiture25()
+    loading_pause_short()
     save_photo_close()  # закрыть и сохранить
     time.sleep(3)
 
-power_off()
+#power_off()
 
