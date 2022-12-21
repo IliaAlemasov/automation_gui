@@ -3,6 +3,7 @@ from sound_setings import *
 from def_for_PH_batch import *
 import pyttsx3
 
+
 '''This script make production n_photo was opened in PH.'''
 '''Скрипт выполнит обработку  N-фото, уже открых внутри фотошопа по заданному 
 в теле цикла алгоритму и сохранит результат с закриытием файлов. А так же развлечет
