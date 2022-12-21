@@ -14,6 +14,12 @@ be sure to switch the keyboard layout to EN. Run the script, specify how many ph
 need to process, pause to loading - depends on the performance of your PC. switch
 into the LR window and select the first photo'''
 
+'''Для этого то же хочу попробовать сделать user friendly интерфейс
+с прогресс баром и слайдером регулирующим время прогрузки вместо input(float).
+Есть идеии как сделать удобно, но с реализацией надо разбираться.
+Если одолею получится реально удобная и полезная программка
+'''
+
 def loading_pause_def():
     time.sleep(load_pause)
 

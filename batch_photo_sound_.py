@@ -11,7 +11,7 @@ import pyttsx3
 if __name__ == '__main__':
 
     engine = pyttsx3.init()  # звуковой движок используется в развлекательно-обучающих целях
-    settings2_soud()
+    settings2_sound()
     engine.say("сколько фото обработать?")
     engine.runAndWait()
     print('сколько фото обработать?')
