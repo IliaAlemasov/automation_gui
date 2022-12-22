@@ -39,7 +39,7 @@ if __name__ == '__main__':
         copy_layer()
         open_partiture()
         load_partiture()
-        after_partiture25()
+        after_partiture40()
         open_nik()
         custom_but_nik()
         target_filter1_nik()
@@ -64,7 +64,7 @@ if __name__ == '__main__':
         copy_layer()
         open_partiture()
         load_partiture()
-        after_partiture25()
+        after_partiture40()
         open_nik()
         custom_but_nik()
         target_filter1_nik()
@@ -117,6 +117,11 @@ if __name__ == '__main__':
         index = n_photo - count  # длинна списка - счетчик, получаем индекс для итерации
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir4, file_name)  # далее алгоритм обработки
+        copy_layer()
+        open_partiture()
+        load_partiture()
+        after_partiture40()
+        loading_pause_short()
         copy_layer()
         open_partiture()
         load_partiture()
