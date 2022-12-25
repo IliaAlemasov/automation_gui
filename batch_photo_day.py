@@ -1,4 +1,4 @@
-from def_for_PH_batch import *
+from def_for_PH_batch_T2 import *
 
 '''This script make production n_photo was opened in PH '''
 '''Скрипт выполнит обработку  N-фото, уже открых внутри фотошопа по заданному 
