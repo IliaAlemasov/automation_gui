@@ -123,20 +123,20 @@ def imported_but_nik():
     delay_load_nik_preview()
 
 def target_imported1_nik():
-    bt = check_button_on_screen('buttons2pc\\imported1.png', for_confidence=.9)
-    click_on_center_button(bt)
+    bt = check_button_on_screen('buttons2pc\\imported1.png', for_confidence=.88)
+    click_custom1(bt)
     delay_load_nik_preview()
 
 
 def target_imported2_nik():
-    bt = check_button_on_screen('buttons2pc\\imported2.png', for_confidence=.9)
-    click_on_center_button(bt)
+    bt = check_button_on_screen('buttons2pc\\imported2.png', for_confidence=.88)
+    click_custom1(bt)
     delay_load_nik_preview()
 
 
 def target_imported3_nik():
     while True:
-        bt = check_button_on_screen_on_for_short('buttons2pc\\imported3.png', for_confidence=.9)
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported3.png', for_confidence=.88)
         if bt is None:  # если кнопки нет - скролим на 1 вниз
             pyautogui.moveTo(xy_for_mouse_scroll_nik)
             pyautogui.scroll(-1)
@@ -150,7 +150,7 @@ def target_imported3_nik():
 
 def target_imported4_nik():
     while True:
-        bt = check_button_on_screen_on_for_short('buttons2pc\\imported4.png', for_confidence=.9)
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported4.png', for_confidence=.85)
         if bt is None:  # если кнопки нет - скролим на 1 вниз
             pyautogui.moveTo(xy_for_mouse_scroll_nik)
             pyautogui.scroll(-1)
@@ -164,7 +164,7 @@ def target_imported4_nik():
 
 def target_imported5_nik():
     while True:
-        bt = check_button_on_screen_on_for_short('buttons2pc\\imported5.png', for_confidence=.9)
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported5.png', for_confidence=.88)
         if bt is None:  # если кнопки нет - скролим на 1 вниз
             pyautogui.moveTo(xy_for_mouse_scroll_nik)
             pyautogui.scroll(-1)
@@ -178,7 +178,7 @@ def target_imported5_nik():
 
 def target_imported6_nik():
     while True:
-        bt = check_button_on_screen_on_for_short('buttons2pc\\imported6.png', for_confidence=.9)
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported6.png', for_confidence=.84)
         if bt is None:  # если кнопки нет - скролим на 1 вниз
             pyautogui.moveTo(xy_for_mouse_scroll_nik)
             pyautogui.scroll(-1)
@@ -192,7 +192,7 @@ def target_imported6_nik():
 
 def target_imported7_nik():
     while True:
-        bt = check_button_on_screen_on_for_short('buttons2pc\\imported7.png', for_confidence=.9)
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported7.png', for_confidence=.88)
         if bt is None:  # если кнопки нет - скролим на 1 вниз
             pyautogui.moveTo(xy_for_mouse_scroll_nik)
             pyautogui.scroll(-1)

@@ -14,11 +14,11 @@ if __name__ == '__main__':
     pyautogui.FAILSAFE = True  # аварийное выключение
 
     for u in range(n_photo):
-        copy_layer()
+        #copy_layer()
         open_nik()
         imported_but_nik()
-        target_imported8_nik()
-        apply_nik()
+        target_imported1_nik()
+        #apply_nik()
         #loading_pause_short()
         #loading_pause_short()
         #open_partiture()
@@ -26,5 +26,5 @@ if __name__ == '__main__':
         #after_partiture25()
         #loading_pause_short()
         #save_photo_close()
-        delay_standart_long()
+        #delay_standart_long()
     print('шеф все готово!')
