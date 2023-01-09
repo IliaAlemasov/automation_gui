@@ -1,5 +1,5 @@
 import os
-from def_for_PH_batch import *
+from def_for_PH_batch_T2_second_PC import *
 
 ''' Этот срипт обрабатывает любое число фото: открывая, обрабатывая и сохраняя
 по одной за раз. Обработку можно проводить по N разным алгоритмам, поместив фото
@@ -34,15 +34,19 @@ if __name__ == '__main__':
         index = n_photo - count  # длинна списка - счетчик, получаем индекс для итерации
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir1, file_name)  # далее алгоритм обработки
+        delay_standart_medium()
         copy_layer()
         ph_levels1()
         copy_layer()
+        delay_standart_medium()
         open_partiture()
         load_partiture()
-        after_partiture40()
+        after_partiture25()
+        loading_pause_short()
+        copy_layer()
         open_nik()
-        custom_but_nik()
-        target_filter1_nik()
+        imported_but_nik()
+        target_imported1_nik()
         apply_nik()
         loading_pause()
         save_photo_close()  # закрыть и сохранить
@@ -61,13 +65,16 @@ if __name__ == '__main__':
         index = n_photo - count  # длинна списка - счетчик, получаем индекс для итерации
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir2, file_name)  # далее алгоритм обработки
+        delay_standart_medium()
         copy_layer()
         open_partiture()
         load_partiture()
-        after_partiture40()
+        after_partiture25()
+        loading_pause_short()
+        copy_layer()
         open_nik()
-        custom_but_nik()
-        target_filter1_nik()
+        imported_but_nik()
+        target_imported1_nik()
         apply_nik()
         loading_pause()
         save_photo_close()  # закрыть и сохранить
@@ -86,21 +93,12 @@ if __name__ == '__main__':
         index = n_photo - count  # длинна списка - счетчик, получаем индекс для итерации
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir3, file_name)  # далее алгоритм обработки
-        copy_layer()
-        open_partiture()
-        load_partiture()
-        after_partiture40()
-        loading_pause_short()
+        delay_standart_medium()
         copy_layer()
         open_partiture()
         load_partiture()
         after_partiture25()
         loading_pause_short()
-        open_nik()
-        custom_but_nik()
-        target_filter5_nik()
-        apply_nik()
-        loading_pause()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
@@ -117,16 +115,18 @@ if __name__ == '__main__':
         index = n_photo - count  # длинна списка - счетчик, получаем индекс для итерации
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir4, file_name)  # далее алгоритм обработки
+        delay_standart_medium()
         copy_layer()
         open_partiture()
         load_partiture()
         after_partiture40()
         loading_pause_short()
         copy_layer()
-        open_partiture()
-        load_partiture()
-        after_partiture25()
-        loading_pause_short()
+        open_nik()
+        imported_but_nik()
+        target_imported1_nik()
+        apply_nik()
+        loading_pause()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
@@ -143,16 +143,21 @@ if __name__ == '__main__':
         index = n_photo - count  # длинна списка - счетчик, получаем индекс для итерации
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir5, file_name)  # далее алгоритм обработки
+        delay_standart_medium()
         copy_layer()
-        open_partiture()
-        load_partiture()
-        after_partiture25()
-        loading_pause_short()
+        ph_levels2()
         copy_layer()
+        delay_standart_medium()
         open_partiture()
         load_partiture()
         after_partiture40()
         loading_pause_short()
+        copy_layer()
+        open_nik()
+        imported_but_nik()
+        target_imported1_nik()
+        apply_nik()
+        loading_pause()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
@@ -185,4 +190,4 @@ if __name__ == '__main__':
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
-    power_off()
+    #power_off()

@@ -1,100 +1,9 @@
 import time
 import pyautogui
+from def_for_PH_batch_T1_second_PC import *
 
 '''It library base value and functional def for easy and fast construction
  algorithms batch photo production '''
-
-# -----base def & value XY for construction tier 1 -----
-
-
-def delay_before_click():  # пауза перед кликом
-    time.sleep(0.1)
-
-
-def delay_drop_dawn_list():  # пауза для раскрытия выпадающих списков
-    time.sleep(.55)
-
-
-def delay_load_partiture():  # пауза для загрузки партрируты
-    time.sleep(7)
-
-
-def delay_load_nik_preview():  # для прогрузки предпросмотра плагинов никон
-    time.sleep(8)
-
-
-def delay_standart():
-    time.sleep(.5)
-
-
-def delay_standart_medium():
-    time.sleep(3)
-
-
-def delay_standart_long():
-    time.sleep(5)
-
-
-def loading_pause():  # пауза для прогрузки очень долгих операций
-    time.sleep(18)
-
-
-def loading_pause_short():  # пауза для прогрузки долгих операций
-    time.sleep(6)
-
-
-def check_button_on_screen(button_path: str, for_grayscale=True, for_confidence=.9):
-    while True:
-        button = pyautogui.locateOnScreen(button_path, grayscale=for_grayscale, confidence=for_confidence)
-        if button is not None:
-            return (button)
-        else:
-            pass
-        time.sleep(.7)  # пауза для оптимизации While
-
-
-def check_button_on_screen_single(button_path: str, for_grayscale=True, for_confidence=.9):
-    button = pyautogui.locateOnScreen(button_path, grayscale=for_grayscale, confidence=for_confidence)
-    if button is not None:
-        return (button)
-    else:
-        pass
-    delay_standart()
-
-
-def check_button_on_screen_on_for(button_path: str, for_grayscale=True, for_confidence=.9):
-    for i in range(30):
-        button = pyautogui.locateOnScreen(button_path, grayscale=for_grayscale, confidence=for_confidence)
-        if button is not None:
-            return (button)
-        else:
-            pass
-        time.sleep(.7)  # пауза для оптимизации for
-
-
-def click_on_center_button(button_box):
-    center_button = pyautogui.center(button_box)
-    pyautogui.leftClick(center_button)
-
-
-def click_custom1(button_box):
-    center_button = pyautogui.center(button_box)
-    pyautogui.moveTo(center_button)
-    delay_before_click()
-    pyautogui.moveRel(0, -70)
-    delay_before_click()
-    pyautogui.leftClick()
-
-
-xy_open_partiture1 = (871, 24)  # координаты кнопок для открытия partiture
-xy_open_partiture2 = (1147, 870)
-xy_open_partiture3 = (1533, 878)
-
-xy_open_nik1 = (871, 24)  # координаты кнопок для открытия nik
-xy_open_nik2 = (927, 918)
-xy_open_nik3 = (1591, 916)
-xy_open_nik4 = (1587, 948)
-
 
 # -----functional def tier 2-----#
 
@@ -111,7 +20,7 @@ def open_partiture():  # запуск партируры
 
 
 def load_partiture():  # проверка на загрузку партритуры
-    bt = check_button_on_screen('buttons\\por_icon.png', for_confidence=.7)
+    bt = check_button_on_screen('buttons2pc\\por_icon.png', for_confidence=.7)
     if bt is not None:
         pyautogui.press('Enter')
     delay_load_partiture()
@@ -156,7 +65,7 @@ def open_nik():  # запуск плагинов никон
     delay_drop_dawn_list()
     pyautogui.leftClick()
     delay_standart_medium()  # пауза для загрузки окна плагинов
-    bt = check_button_on_screen_on_for('buttons\\update.png',
+    bt = check_button_on_screen_on_for('buttons2pc\\update.png',
                                        for_confidence=.9)  # проверка на окно обновлений и его закрытие
     if bt is not None:
         pyautogui.press('Esc')
@@ -165,31 +74,31 @@ def open_nik():  # запуск плагинов никон
 
 
 def custom_but_nik():  # кнопка custon nik
-    bt = check_button_on_screen('buttons\\custom.png', for_confidence=.99)
+    bt = check_button_on_screen('buttons2pc\\custom.png', for_confidence=.99)
     click_on_center_button(bt)
     delay_standart()
 
 
 def target_filter1_nik():  # кнопка target filter1
-    bt = check_button_on_screen('buttons\\custom1.png', for_confidence=.8)
+    bt = check_button_on_screen('buttons2pc\\custom1.png', for_confidence=.8)
     click_custom1(bt)
     delay_load_nik_preview()  # для прогрузки предпросмотра плагинов никон
 
 
 def target_filter2_nik():  # кнопка target filter2
-    bt = check_button_on_screen('buttons\\custom2.png', for_confidence=.8)
+    bt = check_button_on_screen('buttons2pc\\custom2.png', for_confidence=.8)
     click_custom1(bt)
     delay_load_nik_preview()  # для прогрузки предпросмотра плагинов никон
 
 
 def target_filter3_nik():  # кнопка target filter3
-    bt = check_button_on_screen('buttons\\custom3.png', for_confidence=.8)
+    bt = check_button_on_screen('buttons2pc\\custom3.png', for_confidence=.8)
     click_custom1(bt)
     delay_load_nik_preview()  # для прогрузки предпросмотра плагинов никон
 
 
 def target_filter4_nik():  # кнопка target filter4
-    bt = check_button_on_screen('buttons\\custom4.png', for_confidence=.8)
+    bt = check_button_on_screen('buttons2pc\\custom4.png', for_confidence=.8)
     click_custom1(bt)
     delay_load_nik_preview()  # для прогрузки предпросмотра плагинов никон
 
@@ -208,8 +117,109 @@ def target_filter5_nik():  # кнопка target filter5 + избраное. Р�
     delay_load_nik_preview()  # для прогрузки предпросмотра плагинов никон
 
 
+def imported_but_nik():
+    bt = check_button_on_screen('buttons2pc\\imported.png', for_confidence=.99)
+    click_on_center_button(bt)
+    delay_load_nik_preview()
+
+def target_imported1_nik():
+    bt = check_button_on_screen('buttons2pc\\imported1.png', for_confidence=.88)
+    click_custom1(bt)
+    delay_load_nik_preview()
+
+
+def target_imported2_nik():
+    bt = check_button_on_screen('buttons2pc\\imported2.png', for_confidence=.88)
+    click_custom1(bt)
+    delay_load_nik_preview()
+
+
+def target_imported3_nik():
+    while True:
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported3.png', for_confidence=.88)
+        if bt is None:  # если кнопки нет - скролим на 1 вниз
+            pyautogui.moveTo(xy_for_mouse_scroll_nik)
+            pyautogui.scroll(-1)
+            continue  # идем в начало цикла и проверяем снова
+        else:  # если кнопка есть - все путем
+            click_custom1(bt)
+            delay_standart()
+            break
+    delay_load_nik_preview()
+
+
+def target_imported4_nik():
+    while True:
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported4.png', for_confidence=.85)
+        if bt is None:  # если кнопки нет - скролим на 1 вниз
+            pyautogui.moveTo(xy_for_mouse_scroll_nik)
+            pyautogui.scroll(-1)
+            continue  # идем в начало цикла и проверяем снова
+        else:  # если кнопка есть - все путем
+            click_custom1(bt)
+            delay_standart()
+            break
+    delay_load_nik_preview()
+
+
+def target_imported5_nik():
+    while True:
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported5.png', for_confidence=.88)
+        if bt is None:  # если кнопки нет - скролим на 1 вниз
+            pyautogui.moveTo(xy_for_mouse_scroll_nik)
+            pyautogui.scroll(-1)
+            continue  # идем в начало цикла и проверяем снова
+        else:  # если кнопка есть - все путем
+            click_custom1(bt)
+            delay_standart()
+            break
+    delay_load_nik_preview()
+
+
+def target_imported6_nik():
+    while True:
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported6.png', for_confidence=.84)
+        if bt is None:  # если кнопки нет - скролим на 1 вниз
+            pyautogui.moveTo(xy_for_mouse_scroll_nik)
+            pyautogui.scroll(-1)
+            continue  # идем в начало цикла и проверяем снова
+        else:  # если кнопка есть - все путем
+            click_custom1(bt)
+            delay_standart()
+            break
+    delay_load_nik_preview()
+
+
+def target_imported7_nik():
+    while True:
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported7.png', for_confidence=.88)
+        if bt is None:  # если кнопки нет - скролим на 1 вниз
+            pyautogui.moveTo(xy_for_mouse_scroll_nik)
+            pyautogui.scroll(-1)
+            continue  # идем в начало цикла и проверяем снова
+        else:  # если кнопка есть - все путем
+            click_custom1(bt)
+            delay_standart()
+            break
+    delay_load_nik_preview()
+
+
+def target_imported8_nik():
+    while True:
+        bt = check_button_on_screen_on_for_short('buttons2pc\\imported8.png', for_confidence=.88)
+        if bt is None:  # если кнопки нет - скролим на 1 вниз
+            pyautogui.moveTo(xy_for_mouse_scroll_nik)
+            pyautogui.scroll(-1)
+            continue  # идем в начало цикла и проверяем снова
+        else:  # если кнопка есть - все путем
+            click_custom1(bt)
+            delay_standart()
+            break
+    delay_load_nik_preview()
+
+
 def apply_nik():  # кнопка готово плагины никон
-    bt = check_button_on_screen('buttons\\apply.png', for_confidence=.95)
+    bt = check_button_on_screen('buttons2pc\\apply.png', for_confidence=.95)
     click_on_center_button(bt)
     delay_standart()
 
@@ -262,15 +272,15 @@ def color_correction2():
 
 def open_foto(dir_name, file_nane):  # y это путь к папке строкой, x - имя файла
     # кнопка файл:
-    bt1 = check_button_on_screen('buttons\\file.png', for_confidence=.9)
+    bt1 = check_button_on_screen('buttons2pc\\file.png', for_confidence=.9)
     click_on_center_button(bt1)
     delay_drop_dawn_list()
     # кнопка open:
-    bt2 = check_button_on_screen('buttons\\open.png', for_confidence=.9)
+    bt2 = check_button_on_screen('buttons2pc\\open.png', for_confidence=.9)
     click_on_center_button(bt2)
     delay_drop_dawn_list()
     # кнопка dir:
-    bt3 = check_button_on_screen('buttons\\dir.png', for_confidence=.9)
+    bt3 = check_button_on_screen('buttons2pc\\dir.png', for_confidence=.9)
     click_on_center_button(bt3)
     delay_drop_dawn_list()
     pyautogui.write(dir_name)  # пишем имя папки
@@ -278,7 +288,7 @@ def open_foto(dir_name, file_nane):  # y это путь к папке стро�
     pyautogui.press('enter')
     delay_standart()
     # кнопка имя файла:
-    bt4 = check_button_on_screen('buttons\\file_name.png', for_confidence=.9)
+    bt4 = check_button_on_screen('buttons2pc\\file_name.png', for_confidence=.9)
     click_on_center_button(bt4)
     delay_standart()
     pyautogui.write(file_nane)  # пишем имя файла
@@ -298,11 +308,11 @@ def save_photo_close():
 
 def power_off():  # выключение компа
     # кнопка пуск:
-    bt1 = check_button_on_screen('buttons\\start.png', for_confidence=.9)
+    bt1 = check_button_on_screen('buttons2pc\\start.png', for_confidence=.9)
     click_on_center_button(bt1)
     delay_drop_dawn_list()
     # кнопка завершение работы:
-    bt2 = check_button_on_screen('buttons\\power_off.png', for_confidence=.9)
+    bt2 = check_button_on_screen('buttons2pc\\power_off.png', for_confidence=.9)
     click_on_center_button(bt2)
     delay_drop_dawn_list()
 

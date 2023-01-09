@@ -1,6 +1,6 @@
 import random
 from sound_setings import *
-from def_for_PH_batch import *
+from def_for_PH_batch_T2 import *
 import pyttsx3
 
 
