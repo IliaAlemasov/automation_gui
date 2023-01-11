@@ -116,6 +116,10 @@ if __name__ == '__main__':
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir4, file_name)  # далее алгоритм обработки
         delay_standart_medium()
+        copy_layer()
+        ph_levels1()
+        copy_layer()
+        delay_standart_medium()
         open_partiture()
         load_partiture()
         after_partiture40()
@@ -125,7 +129,7 @@ if __name__ == '__main__':
         imported_but_nik()
         target_imported1_nik()
         apply_nik()
-        loading_pause()()
+        loading_pause()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
@@ -143,8 +147,6 @@ if __name__ == '__main__':
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir5, file_name)  # далее алгоритм обработки
         delay_standart_medium()
-        copy_layer()
-        ph_levels2()
         copy_layer()
         delay_standart_medium()
         open_partiture()
