@@ -1,5 +1,6 @@
 import os
 from def_for_PH_batch_T2_second_PC import *
+from plastic_PH import open_plastic, plastic_face
 
 ''' Этот срипт обрабатывает любое число фото: открывая, обрабатывая и сохраняя
 по одной за раз. Обработку можно проводить по N разным алгоритмам, поместив фото
@@ -41,7 +42,7 @@ if __name__ == '__main__':
         delay_standart_medium()
         open_partiture()
         load_partiture()
-        after_partiture40()
+        after_partiture25()
         loading_pause_short()
         copy_layer()
         open_nik()
@@ -70,7 +71,7 @@ if __name__ == '__main__':
         delay_standart_medium()
         open_partiture()
         load_partiture()
-        after_partiture40()
+        after_partiture25()
         loading_pause_short()
         copy_layer()
         open_nik()
@@ -96,12 +97,9 @@ if __name__ == '__main__':
         open_foto(dir3, file_name)  # далее алгоритм обработки
         delay_standart_medium()
         copy_layer()
-        ph_levels1()
-        delay_standart_medium()
-        copy_layer()
         open_partiture()
         load_partiture()
-        after_partiture40()
+        after_partiture25()
         loading_pause_short()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
@@ -126,7 +124,7 @@ if __name__ == '__main__':
         delay_standart_medium()
         open_partiture()
         load_partiture()
-        after_partiture40()
+        after_partiture25()
         loading_pause_short()
         copy_layer()
         open_nik()
@@ -155,7 +153,7 @@ if __name__ == '__main__':
         delay_standart_medium()
         open_partiture()
         load_partiture()
-        after_partiture40()
+        after_partiture25()
         loading_pause_short()
         copy_layer()
         open_nik()
@@ -184,6 +182,11 @@ if __name__ == '__main__':
         open_partiture()
         load_partiture()
         after_partiture40()
+        loading_pause_short()
+        delay_standart_medium()
+        open_plastic()
+        plastic_face(eyes_size_l = '7',eyes_size_r = '7', eyes_height_l = '10',
+             eyes_height_r = '10' )
         loading_pause_short()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
