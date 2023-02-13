@@ -2,6 +2,7 @@ import face_recognition as fr
 import pyautogui
 import time
 
+
 class FaceDetection:
     #Запускаем класс, передаем путь к образцу лица
     def __init__(self,path_to_reference= ''):
@@ -20,7 +21,7 @@ class FaceDetection:
 
 
     # получаем кортеж с координатами целевого лица
-    def get_location_target_face(self, for_tolerance_matching = 0.3):
+    def get_location_target_face(self, for_tolerance_matching = 0.5):
         index_match_encoding = []
 
         for index, work_encoding in enumerate(self.work_image_encoding):

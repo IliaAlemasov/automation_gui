@@ -4,6 +4,7 @@ from def_for_PH_batch_T1_second_PC import delay_standart, delay_standart_medium,
     check_button_on_screen, click_on_center_button, check_button_on_screen_on_for_short
 import os
 from def_for_PH_batch_T2_second_PC import  open_foto, save_photo_close
+from  face_detection_class import FaceDetection
 
 eyes_size_l_point = 1238, 289
 eyes_size_r_point = 1423, 289
@@ -128,6 +129,8 @@ if __name__ == '__main__':
     print('обработка начнется через 10 секунд')
     time.sleep(10)
 
+    face_Elena = FaceDetection(path_to_reference= 'C:\\face_reference\\Elena.jpg')
+
     adress_list = []  # список путей к папкам
 
     for adress, dirs, files in os.walk(production_path):
@@ -149,12 +152,15 @@ if __name__ == '__main__':
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir1, file_name)  # далее алгоритм обработки
         delay_standart_medium()
-        Daria = PlasticFace()
-        Daria.wight_face(wight_face='-30')
-        Daria.jaw_line(jaw_line='-60')
-        Daria.chin_height(chin_height='30')
-        Daria.eyes_size_correction(eyes_size_l='30', eyes_size_r='50')
-        Daria.close_plastic()
+        Elena = PlasticFace()
+        face_Elena.make_work_image()
+        face_Elena.get_location_target_face()
+        face_Elena.click_on_center_target_face()
+        Elena.wight_face(wight_face='-30')
+        Elena.jaw_line(jaw_line='-60')
+        Elena.chin_height(chin_height='30')
+        Elena.eyes_size_correction(eyes_size_l='30', eyes_size_r='50')
+        Elena.close_plastic()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
