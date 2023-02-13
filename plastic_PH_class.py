@@ -2,6 +2,8 @@ import pyautogui
 import time
 from def_for_PH_batch_T1_second_PC import delay_standart, delay_standart_medium,\
     check_button_on_screen, click_on_center_button, check_button_on_screen_on_for_short
+import os
+from def_for_PH_batch_T2_second_PC import  open_foto, save_photo_close
 
 eyes_size_l_point = 1238, 289
 eyes_size_r_point = 1423, 289
@@ -78,7 +80,6 @@ class PlasticFace:
                  eyes_size_r = '0', eyes_height_l = '0', eyes_height_r = '0'):
         if self.bt0 is None:
             if eyes_size_l != '0':
-                pyautogui.moveTo(100, 100)
                 pyautogui.moveTo(eyes_size_l_point)
                 delay_standart()
                 pyautogui.click()
@@ -86,33 +87,30 @@ class PlasticFace:
                 delay_standart()
                 pyautogui.press('enter')
                 delay_standart()
-            elif eyes_size_r != '0':
-                pyautogui.moveTo(100, 100)
-                pyautogui.moveTo(eyes_size_r_point)
-                delay_standart()
-                pyautogui.click()
-                pyautogui.write(eyes_size_r)
-                delay_standart()
-                pyautogui.press('enter')
-                delay_standart()
-            elif eyes_height_l != '0':
-                pyautogui.moveTo(100, 100)
-                pyautogui.moveTo(eyes_height_l_point)
-                delay_standart()
-                pyautogui.click()
-                pyautogui.write(eyes_height_l)
-                delay_standart()
-                pyautogui.press('enter')
-                delay_standart()
-            elif eyes_height_r != '0':
-                pyautogui.moveTo(100, 100)
-                pyautogui.moveTo(eyes_height_r_point)
-                delay_standart()
-                pyautogui.click()
-                pyautogui.write(eyes_height_r)
-                delay_standart()
-                pyautogui.press('enter')
-                delay_standart()
+                if eyes_size_r != '0':
+                    pyautogui.moveTo(eyes_size_r_point)
+                    delay_standart()
+                    pyautogui.click()
+                    pyautogui.write(eyes_size_r)
+                    delay_standart()
+                    pyautogui.press('enter')
+                    delay_standart()
+                    if eyes_height_l != '0':
+                        pyautogui.moveTo(eyes_height_l_point)
+                        delay_standart()
+                        pyautogui.click()
+                        pyautogui.write(eyes_height_l)
+                        delay_standart()
+                        pyautogui.press('enter')
+                        delay_standart()
+                        if eyes_height_r != '0':
+                            pyautogui.moveTo(eyes_height_r_point)
+                            delay_standart()
+                            pyautogui.click()
+                            pyautogui.write(eyes_height_r)
+                            delay_standart()
+                            pyautogui.press('enter')
+                            delay_standart()
             else:
                 pass
         delay_standart()
@@ -122,6 +120,43 @@ class PlasticFace:
             delay_standart()
             pyautogui.press('enter')
             delay_standart_medium()
+
+
+if __name__ == '__main__':
+    print('укажите путь к папке')
+    production_path = input('')
+    print('обработка начнется через 10 секунд')
+    time.sleep(10)
+
+    adress_list = []  # список путей к папкам
+
+    for adress, dirs, files in os.walk(production_path):
+        adress_list.append(adress)
+
+    adress_list.pop(0)  # удаляем путь к главной папке
+
+    dir1 = adress_list[0]  # блок кода для папки 1
+
+    for i in os.walk(dir1):
+        pass
+    name_files_list = i[-1]  # здесь список имен файлов в папке
+    n_photo = len(name_files_list)  # длинна списка файлов для цикла for
+    count = 0  # счетчик для for
+
+    for o in range(n_photo):
+        count += 1
+        index = n_photo - count  # длинна списка - счетчик, получаем индекс для итерации
+        file_name = name_files_list[index]  # получаем имя файла
+        open_foto(dir1, file_name)  # далее алгоритм обработки
+        delay_standart_medium()
+        Daria = PlasticFace()
+        Daria.wight_face(wight_face='-30')
+        Daria.jaw_line(jaw_line='-60')
+        Daria.chin_height(chin_height='30')
+        Daria.eyes_size_correction(eyes_size_l='30', eyes_size_r='50')
+        Daria.close_plastic()
+        save_photo_close()  # закрыть и сохранить
+        delay_standart_medium()
 
 
 
