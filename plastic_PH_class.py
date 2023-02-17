@@ -4,7 +4,7 @@ from def_for_PH_batch_T1_second_PC import delay_standart, delay_standart_medium,
     check_button_on_screen, click_on_center_button, check_button_on_screen_on_for_short
 import os
 from def_for_PH_batch_T2_second_PC import  open_foto, save_photo_close
-from  face_detection_class import FaceDetection
+import face_recognition as fr
 
 eyes_size_l_point = 1238, 289
 eyes_size_r_point = 1423, 289
@@ -122,6 +122,115 @@ class PlasticFace:
             pyautogui.press('enter')
             delay_standart_medium()
 
+class FaceDetectionAbstract:
+    #Запускаем класс, передаем путь к образцу лица
+    def __init__(self,path_to_reference= ''):
+        open_reference_face = fr.load_image_file(path_to_reference)
+        self.reference_face_encoding = fr.face_encodings(open_reference_face)
+
+
+    #делаем скриншот, получаем энкодинги и локации лиц
+    def make_work_image(self):
+        screenshot = pyautogui.screenshot()
+        screenshot.save('scr/work_screenshot.jpeg')
+        open_work_image = fr.load_image_file('scr/work_screenshot.jpeg')
+        self.work_image_encoding = fr.face_encodings(open_work_image)
+        self.location_face_work_image = fr.face_locations(open_work_image)
+
+
+
+    # получаем кортеж с координатами целевого лица
+    def get_location_target_face(self, for_tolerance_matching = 0.5):
+        index_match_encoding = []
+
+        for index, work_encoding in enumerate(self.work_image_encoding):
+            match_face = fr.compare_faces(self.reference_face_encoding, work_encoding,
+                                          tolerance=for_tolerance_matching)
+            if match_face == [True]:
+                index_match_encoding.append(index)
+                break
+            else:
+                pass
+        try:
+            target_index = index_match_encoding[0]
+            self.location_target_face = self.location_face_work_image[target_index]
+        except IndexError:
+            self.location_target_face = None
+            print('Target face not fund! Please try change for_tolerance_matching')
+
+
+    # адаптер для pyautogui.moveTo() - возвращает x,y целевого лица
+    def adapter_for_pyautogui_move_to_x_y(self):
+        if self.location_target_face is not None:
+            self.y_centr_target_face = (self.location_target_face[0] + self.location_target_face[2]) / 2
+            self.x_centr_target_face = (self.location_target_face[1] + self.location_target_face[3]) / 2
+        else:
+            pass
+
+
+# Класс с нюансами реализации именно для палстики в фотошоп
+class PlasticWithFaceDetection(FaceDetectionAbstract,PlasticFace):
+    def __init__(self, path_to_reference=''):
+        FaceDetectionAbstract.__init__(self, path_to_reference)
+
+
+    def open_plastic(self):
+        PlasticFace.__init__(self)
+
+
+    # выбираем другой инструмент, что бы линии выделения лиц не попали на скриншот
+    def make_work_image_plastic(self):
+        pyautogui.press('w')
+        time.sleep(.5)
+        pyautogui.moveTo(50,50)
+        FaceDetectionAbstract.make_work_image(self)
+        time.sleep(.5)
+        pyautogui.press('a')
+
+    # запускаем как есть  get_location_target_face из FaceDetectionAbstract
+    #запускаем адаптер и кликаем на центр целевого лица
+    def click_on_center_target_face(self):
+        FaceDetectionAbstract.adapter_for_pyautogui_move_to_x_y(self)
+        if self.location_target_face is not None:
+            pyautogui.moveTo(self.x_centr_target_face,self.y_centr_target_face)
+            pyautogui.click()
+        else:
+            pass
+
+
+    def wight_face_with_detection(self, wight_face = '0'):
+        if self.location_target_face is not None:
+            PlasticFace.wight_face(self, wight_face)
+        else:
+            pass
+
+    def jaw_line_with_detection(self, jaw_line='0'):
+        if self.location_target_face is not None:
+            PlasticFace.jaw_line(self, jaw_line)
+        else:
+            pass
+
+    def chin_height_with_detection(self, chin_height='0'):
+        if self.location_target_face is not None:
+            PlasticFace.chin_height(self, chin_height)
+        else:
+            pass
+
+    def eyes_size_correction_with_detection(self, eyes_size_l='0', eyes_size_r='0',
+                                            eyes_height_l='0', eyes_height_r='0'):
+        if self.location_target_face is not None:
+            PlasticFace.eyes_size_correction(self, eyes_size_l,eyes_size_r,
+                                             eyes_height_l, eyes_height_r)
+        else:
+            pass
+
+    def close_plastic_with_detection(self):
+        if self.location_target_face is not None:
+            PlasticFace.close_plastic(self)
+        else:
+            pyautogui.press("esc")
+            time.sleep(.5)
+
 
 if __name__ == '__main__':
     print('укажите путь к папке')
@@ -129,7 +238,6 @@ if __name__ == '__main__':
     print('обработка начнется через 10 секунд')
     time.sleep(10)
 
-    face_Elena = FaceDetection(path_to_reference= 'C:\\face_reference\\Elena.jpg')
 
     adress_list = []  # список путей к папкам
 
@@ -152,15 +260,27 @@ if __name__ == '__main__':
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir1, file_name)  # далее алгоритм обработки
         delay_standart_medium()
-        Elena = PlasticFace()
-        face_Elena.make_work_image()
-        face_Elena.get_location_target_face()
-        face_Elena.click_on_center_target_face()
-        Elena.wight_face(wight_face='-30')
-        Elena.jaw_line(jaw_line='-60')
-        Elena.chin_height(chin_height='30')
-        Elena.eyes_size_correction(eyes_size_l='30', eyes_size_r='50')
-        Elena.close_plastic()
+        Elena = PlasticWithFaceDetection(path_to_reference= 'C:\\face_reference\\Elena.jpg')
+        Elena.open_plastic()
+        Elena.make_work_image_plastic()
+        Elena.get_location_target_face()
+        Elena.click_on_center_target_face()
+        Elena.wight_face_with_detection(wight_face= '-30')
+        Elena.jaw_line_with_detection(jaw_line= '-60')
+        Elena.eyes_size_correction_with_detection(eyes_size_l='30',
+                                                  eyes_size_r= ' 30')
+        Elena.chin_height_with_detection(chin_height= '20')
+        Elena.close_plastic_with_detection()
+
+        #Elena = PlasticFace()
+        #face_Elena.make_work_image()
+        #face_Elena.get_location_target_face()
+        #face_Elena.click_on_center_target_face()
+        #Elena.wight_face(wight_face='-30')
+        #Elena.jaw_line(jaw_line='-60')
+        #Elena.chin_height(chin_height='30')
+        #Elena.eyes_size_correction(eyes_size_l='30', eyes_size_r='50')
+        #Elena.close_plastic()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
