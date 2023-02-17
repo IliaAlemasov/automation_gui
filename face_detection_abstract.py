@@ -1,7 +1,7 @@
 import face_recognition as fr
 import pyautogui
 import time
-
+from plastic_PH_class import PlasticFace
 
 class FaceDetectionAbstract:
     #Запускаем класс, передаем путь к образцу лица
@@ -43,13 +43,22 @@ class FaceDetectionAbstract:
     # адаптер для pyautogui.moveTo() - возвращает x,y целевого лица
     def adapter_for_pyautogui_move_to_x_y(self):
         if self.location_target_face is not None:
-            y_centr_target_face = (self.location_target_face[0] + self.location_target_face[2]) / 2
-            x_centr_target_face = (self.location_target_face[1] + self.location_target_face[3]) / 2
-            return (x_centr_target_face,y_centr_target_face)
+            self.y_centr_target_face = (self.location_target_face[0] + self.location_target_face[2]) / 2
+            self.x_centr_target_face = (self.location_target_face[1] + self.location_target_face[3]) / 2
+        else:
+            pass
 
 
 # Класс с нюансами реализации именно для палстики в фотошоп
-class FaceDetectionForPlastic(FaceDetectionAbstract):
+class PlasticWithFaceDetection(FaceDetectionAbstract,PlasticFace):
+    def __init__(self):
+        FaceDetectionAbstract.__init__()
+
+
+    def open_plastic(self):
+        PlasticFace.__init__()
+
+
     # выбираем другой инструмент, что бы линии выделения лиц не попали на скриншот
     def make_work_image_plastic(self):
         pyautogui.press('w')
@@ -58,5 +67,45 @@ class FaceDetectionForPlastic(FaceDetectionAbstract):
         time.sleep(.5)
         pyautogui.press('a')
 
+    # запускаем как есть  get_location_target_face из FaceDetectionAbstract
+    #запускаем адаптер и кликаем на центр целевого лица
+    def click_on_center_target_face(self):
+        FaceDetectionAbstract.adapter_for_pyautogui_move_to_x_y()
+        if self.location_target_face is not None:
+            pyautogui.moveTo(self.x_centr_target_face,self.y_centr_target_face)
+            pyautogui.click()
+        else:
+            pass
+
+
+    def wight_face_with_detection(self, wight_face = '0'):
+        if self.location_target_face is not None:
+            PlasticFace.wight_face(wight_face)
+        else:
+            pass
+
+    def jaw_line_with_detection(self, jaw_line='0'):
+        if self.location_target_face is not None:
+            PlasticFace.jaw_line(jaw_line)
+        else:
+            pass
+
+    def chin_height_with_detection(self, chin_height='0'):
+        if self.location_target_face is not None:
+            PlasticFace.chin_height(chin_height)
+        else:
+            pass
+
+    def eyes_size_correction_with_detection(self, eyes_size_l='0', eyes_size_r='0',
+                                            eyes_height_l='0', eyes_height_r='0'):
+        if self.location_target_face is not None:
+            PlasticFace.eyes_size_correction(eyes_size_l,eyes_size_r,
+                                             eyes_height_l, eyes_height_r)
+        else:
+            pass
+
+    def close_plastic_with_detection(self):
+        if self.location_target_face is not None:
+            PlasticFace.close_plastic()
 
 
