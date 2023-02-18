@@ -135,7 +135,7 @@ class PlasticFace:
             delay_standart_medium()
 
 
-'''Абстрактный класс для детекции лица - без привязки к конкретной реализации.
+'''FaceDetectionAbstract -> Абстрактный класс для детекции лица - без привязки к конкретной реализации.
    Ну по крайней мере потытался выкинуть все нюансы реализации для пластики.
    Что бы была возможность переиспользовать если распознование лица по этой 
    технологии пригодится для чего то еще. Возможно потом будет нужно дополнить
@@ -184,7 +184,10 @@ class FaceDetectionAbstract:
             pass
 
 
-# Класс с нюансами реализации именно для палстики в фотошоп
+''' PlasticWithFaceDetection -> класс наследник FaceDetectionAbstract и PlasticFace
+    Используется для пластики лиц в ШФ, когда на фото больше 1 человека
+    И коррекцию надо сделать для 1 целевого лица
+    Может рабоать и для фото с 1 персоной, но избыточен '''
 class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
     def __init__(self, path_to_reference=''):
         FaceDetectionAbstract.__init__(self, path_to_reference)
@@ -299,14 +302,5 @@ if __name__ == '__main__':
         Elena.chin_height_with_detection(chin_height='20')
         Elena.close_plastic_with_detection()
 
-        # Elena = PlasticFace()
-        # face_Elena.make_work_image()
-        # face_Elena.get_location_target_face()
-        # face_Elena.click_on_center_target_face()
-        # Elena.wight_face(wight_face='-30')
-        # Elena.jaw_line(jaw_line='-60')
-        # Elena.chin_height(chin_height='30')
-        # Elena.eyes_size_correction(eyes_size_l='30', eyes_size_r='50')
-        # Elena.close_plastic()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
