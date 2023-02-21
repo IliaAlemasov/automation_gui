@@ -4,6 +4,8 @@ from def_for_PH_batch_T1_second_PC import delay_standart, delay_standart_medium,
     check_button_on_screen, click_on_center_button, check_button_on_screen_on_for_short
 import os
 from def_for_PH_batch_T2_second_PC import open_foto, save_photo_close
+# Последняя версия данной библиотеки была выпущена 3 года назад. Кажется, как будто её перестали поддерживать. Возможно стоит поискать что-то ещё.
+# Знаю точно, что в OpenCv есть такая возможность, но насколько хорошо эти библиотеки работают - не знаю.
 import face_recognition as fr
 
 eyes_size_l_point = 1238, 289
@@ -42,91 +44,139 @@ class PlasticFace:
     '''проверка на равенство аргумента 0 в этих методах не нужна, так как просто нет смысла
        запускать метод с 0 аргументом'''
 
-    def wight_face(self, wight_face='0'):  # метод для ширины лица
-        if self.bt0 is None:  # проверка наличие ошибки обнаружения лица в ФШ, аналогично для других методов
-            pyautogui.moveTo(100, 100)
-            bt1 = check_button_on_screen('buttons2pc\\width_face.png', for_confidence=.9)
-            click_on_center_button(bt1)
+    def _do_smth (self, image_src: str, param : int):
+        if self.bt0 is not None:
             delay_standart()
-            pyautogui.write(wight_face)
-            delay_standart()
-            pyautogui.press('enter')
-            delay_standart()
-        else:
-            pass
+            return
+        pyautogui.moveTo(100, 100)
+        bt1 = check_button_on_screen(f'buttons2pc\\{image_src}.png', for_confidence=.9)
+        click_on_center_button(bt1)
         delay_standart()
+        pyautogui.write(str(param))
+        delay_standart()
+        pyautogui.press('enter')
+        delay_standart()
+
+    # ширина по-английски - width
+    # по-хорошему, такие параметры как wight_face передавать не как str, а как int, а потом уже где надо делать преобразование int -> str
+    # Ещё один момент. Желательно в название функции добавить глагол - так проще будет понять, что делает эта функция.
+    # Вот например, смотрю на функцию width_face - ширина лица. Ну и что эта функция делает с шириной лица? Мне не совсем понятно
+    # Можно например так обозвать: correct_face_width (p.s. главное слово в словосочетании - это ширина,
+    # а главное слово в англ. языке ставится в конце)
+    def wight_face(self, wight_face='0'):  # метод для ширины лица
+        self._do_smth('width_face', int(wight_face))
+        # if self.bt0 is None:  # проверка наличие ошибки обнаружения лица в ФШ, аналогично для других методов
+        #     pyautogui.moveTo(100, 100)
+        #     bt1 = check_button_on_screen('buttons2pc\\width_face.png', for_confidence=.9)
+        #     click_on_center_button(bt1)
+        #     delay_standart()
+        #     pyautogui.write(wight_face)
+        #     delay_standart()
+        #     pyautogui.press('enter')
+        #     delay_standart()
+        # else:
+        #     pass
+        # delay_standart()
 
     def jaw_line(self, jaw_line='0'):  # метод для линии подбородка
-        if self.bt0 is None:
-            pyautogui.moveTo(100, 100)
-            bt1 = check_button_on_screen('buttons2pc\\jaw_line.png', for_confidence=.9)
-            click_on_center_button(bt1)
-            delay_standart()
-            pyautogui.write(jaw_line)
-            delay_standart()
-            pyautogui.press('enter')
-            delay_standart()
-        else:
-            pass
-        delay_standart()
+        self._do_smth('jaw_line', int(jaw_line))
+        # if self.bt0 is None:
+        #     pyautogui.moveTo(100, 100)
+        #     bt1 = check_button_on_screen('buttons2pc\\jaw_line.png', for_confidence=.9)
+        #     click_on_center_button(bt1)
+        #     delay_standart()
+        #     pyautogui.write(jaw_line)
+        #     delay_standart()
+        #     pyautogui.press('enter')
+        #     delay_standart()
+        # else:
+        #     pass
+        # delay_standart()
 
     def chin_height(self, chin_height='0'):  # метод для высоты подбородка
-        if self.bt0 is None:
-            pyautogui.moveTo(100, 100)
-            bt1 = check_button_on_screen('buttons2pc\\chin_height.png', for_confidence=.9)
-            click_on_center_button(bt1)
-            delay_standart()
-            pyautogui.write(chin_height)
-            delay_standart()
-            pyautogui.press('enter')
-            delay_standart()
-        else:
-            pass
-        delay_standart()
+        self._do_smth('chin_height', int(chin_height))
+        # if self.bt0 is None:
+        #     pyautogui.moveTo(100, 100)
+        #     bt1 = check_button_on_screen('buttons2pc\\chin_height.png', for_confidence=.9)
+        #     click_on_center_button(bt1)
+        #     delay_standart()
+        #     pyautogui.write(chin_height)
+        #     delay_standart()
+        #     pyautogui.press('enter')
+        #     delay_standart()
+        # else:
+        #     pass
+        # delay_standart()
 
     '''Здесь не придумал ничего лучше чем лесенка из if для проверки равенства аргумента 0
     С глазами все индивидумально - кому то нужен только 1 параметр, кому то все 4.
     Разбиение на 4 метода показались лишним усложнением'''
 
-
+    # Эти параметры лучше также изначально передавать как int
     def eyes_size_correction(self, eyes_size_l='0',  # метод для коррекции размера глаз
                              eyes_size_r='0', eyes_height_l='0', eyes_height_r='0'):
-        if self.bt0 is None:
-            if eyes_size_l != '0':
-                pyautogui.moveTo(eyes_size_l_point)
-                delay_standart()
-                pyautogui.click()
-                pyautogui.write(eyes_size_l)
-                delay_standart()
-                pyautogui.press('enter')
-                delay_standart()
-                if eyes_size_r != '0':
-                    pyautogui.moveTo(eyes_size_r_point)
-                    delay_standart()
-                    pyautogui.click()
-                    pyautogui.write(eyes_size_r)
-                    delay_standart()
-                    pyautogui.press('enter')
-                    delay_standart()
-                    if eyes_height_l != '0':
-                        pyautogui.moveTo(eyes_height_l_point)
-                        delay_standart()
-                        pyautogui.click()
-                        pyautogui.write(eyes_height_l)
-                        delay_standart()
-                        pyautogui.press('enter')
-                        delay_standart()
-                        if eyes_height_r != '0':
-                            pyautogui.moveTo(eyes_height_r_point)
-                            delay_standart()
-                            pyautogui.click()
-                            pyautogui.write(eyes_height_r)
-                            delay_standart()
-                            pyautogui.press('enter')
-                            delay_standart()
-            else:
-                pass
+        if self.bt0 is not None:
+            delay_standart()
+            return
+
+        # данная функция будет видна только внутри функции eyes_size_correction. Если она нужна будет где-то ещё, можно вынести её в класс
+        def func (point: tuple[int, int], size: int):
+            pyautogui.moveTo(point)
+            delay_standart()
+            pyautogui.click()
+            pyautogui.write(size)
+            delay_standart()
+            pyautogui.press('enter')
+            delay_standart()
+
+        # вот так, например, можно избавиться от лесенки из ифов
+        eyes_values = [
+            (eyes_size_l_point, eyes_size_l),
+            (eyes_size_r_point, eyes_size_r),
+            (eyes_height_l_point, eyes_height_l),
+            (eyes_height_r_point, eyes_height_r),
+        ]
+        for eye_value in eyes_values:
+            # если первое условие не выполнилось, то мы тупо выходим из цикла, и остальные условия проверяться даже и не будут
+            if eye_value[1] == '0':
+                break
+            func(*eye_value) # это эквивалентно записи func(value[0], value[1], ..., value[n]). Таким же образом можно распаковывать не только кортежи, но и, например, списки
         delay_standart()
+
+        # hint: для того, чтобы закомментировать несколько выделенных строк, нажми Ctrl + /
+        # if eyes_size_l != '0':
+        #     pyautogui.moveTo(eyes_size_l_point)
+        #     delay_standart()
+        #     pyautogui.click()
+        #     pyautogui.write(eyes_size_l)
+        #     delay_standart()
+        #     pyautogui.press('enter')
+        #     delay_standart()
+        #     if eyes_size_r != '0':
+        #         pyautogui.moveTo(eyes_size_r_point)
+        #         delay_standart()
+        #         pyautogui.click()
+        #         pyautogui.write(eyes_size_r)
+        #         delay_standart()
+        #         pyautogui.press('enter')
+        #         delay_standart()
+        #         if eyes_height_l != '0':
+        #             pyautogui.moveTo(eyes_height_l_point)
+        #             delay_standart()
+        #             pyautogui.click()
+        #             pyautogui.write(eyes_height_l)
+        #             delay_standart()
+        #             pyautogui.press('enter')
+        #             delay_standart()
+        #             if eyes_height_r != '0':
+        #                 pyautogui.moveTo(eyes_height_r_point)
+        #                 delay_standart()
+        #                 pyautogui.click()
+        #                 pyautogui.write(eyes_height_r)
+        #                 delay_standart()
+        #                 pyautogui.press('enter')
+        #                 delay_standart()
+        # delay_standart()
 
     def close_plastic(self):  # метод для закрытия палстики
         if self.bt0 is None:  # работает только если нет ошибки распознования лица в ФШ
@@ -183,7 +233,7 @@ class FaceDetectionAbstract:
         else:
             pass
 
-
+# множественное наследование не самая хорошая штука, лучше стараться его избегать, но в учебных целях можно
 ''' PlasticWithFaceDetection -> класс наследник FaceDetectionAbstract и PlasticFace
     Используется для пластики лиц в ШФ, когда на фото больше 1 человека
     И коррекцию надо сделать для 1 целевого лица
@@ -191,14 +241,17 @@ class FaceDetectionAbstract:
 class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
     def __init__(self, path_to_reference=''):
         FaceDetectionAbstract.__init__(self, path_to_reference)
-
+        PlasticFace.__init__(self)
+    # инициализацию конструктора PlasticFace лучше также вынести в конструктор производного класса
     def open_plastic(self):
         PlasticFace.__init__(self)
 
     # выбираем другой инструмент, что бы линии выделения лиц не попали на скриншот
     # И не мешали матчингу лиц, потом снова выбраем платику с учетом лиц,
     # что бы методы для пластики ФШ корректно работали
-    def make_work_image_plastic(self):
+    def make_work_image(self):
+        # нужно именно переопределять (override) функцию базового класса, а не давать в производном классе похожее название
+        # с помощью переопределения достигается так называемый полиморфизм. Попробую объяснить ниже
         pyautogui.press('w')
         time.sleep(.5)
         pyautogui.moveTo(50, 50)
@@ -227,26 +280,31 @@ class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
     # может случится ситуация когда FR лиц не нашел а ФШ нашел
     # Тогда лучше не делать ничего, чем похудить мужика или
     # применить параметры пластики к другому лицу
-    def wight_face_with_detection(self, wight_face='0'):
+    def wight_face(self, wight_face='0'):
+        # изменил название
         if self.location_target_face is not None:
             PlasticFace.wight_face(self, wight_face)
         else:
             pass
 
-    def jaw_line_with_detection(self, jaw_line='0'):
+    def jaw_line(self, jaw_line='0'):
+        # изменил название
         if self.location_target_face is not None:
             PlasticFace.jaw_line(self, jaw_line)
+        # вообще здесь и во многих других случаях else -> pass не обязателен, можно (а может даже лучше) его убрать
         else:
             pass
 
-    def chin_height_with_detection(self, chin_height='0'):
+    def chin_height(self, chin_height='0'):
+        # изменил название
         if self.location_target_face is not None:
             PlasticFace.chin_height(self, chin_height)
         else:
             pass
 
-    def eyes_size_correction_with_detection(self, eyes_size_l='0', eyes_size_r='0',
+    def eyes_size_correction(self, eyes_size_l='0', eyes_size_r='0',
                                             eyes_height_l='0', eyes_height_r='0'):
+        # изменил название
         if self.location_target_face is not None:
             PlasticFace.eyes_size_correction(self, eyes_size_l, eyes_size_r,
                                              eyes_height_l, eyes_height_r)
@@ -256,7 +314,7 @@ class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
     # корректного закрытия если FR не нашел целевое лицо
     # а фш - лица увидел
 
-    def close_plastic_with_detection(self):
+    def close_plastic(self):
         if self.location_target_face is not None:
             PlasticFace.close_plastic(self)
         else:
@@ -285,6 +343,12 @@ if __name__ == '__main__':
     n_photo = len(name_files_list)  # длинна списка файлов для цикла for
     count = 0  # счетчик для for
 
+    # принципиально важно итерироваться по файлам с конца? Если нет, то я бы цикл сделал примерно так:
+    # for photo in name_files_list:
+    #     open_foto(dir1, photo)
+    #     ...
+    # в таком случае можно будет отказаться от переменных o, n_photo, count.
+    # Тем более переменная o не используется (и между прочем может использоваться вместо count при твоей записи цикла)
     for o in range(n_photo):
         count += 1
         index = n_photo - count  # длинна списка - счетчик, получаем индекс для итерации
@@ -293,7 +357,7 @@ if __name__ == '__main__':
         delay_standart_medium()
         Elena = PlasticWithFaceDetection(path_to_reference='C:\\face_reference\\Elena.jpg')
         Elena.open_plastic()
-        Elena.make_work_image_plastic()
+        Elena.make_work_image()
         Elena.click_on_center_target_face()
         Elena.wight_face_with_detection(wight_face='-30')
         Elena.jaw_line_with_detection(jaw_line='-60')
@@ -304,3 +368,56 @@ if __name__ == '__main__':
 
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
+
+'''
+Почему надо именно переопределять функции, а не писать новые с похожим названием?
+Рассмотрим класс животных. Все животные так или иначе умеют говорить
+
+class Animal:
+    def __init__ (self, name):
+        self._name = name
+    
+    def say(word):
+        ничего не делаем
+        данный метод можно указать абстрактным (добавить декоратор @abstractmethod, кажется)
+        
+Теперь производные классы:
+class Cat(Animal):
+    def say_like_cat (word):
+        говорим Мяу
+        
+class Dog(Animal):
+    def say_like_dog (word):
+        говорим Гав
+        
+А теперь организуем зоопарк и заставим их всех говорить:
+
+animals = [Cat("Барсик"), Dog("Бобик"), Cat("Мурзик"),  Bird("Кеша")]
+animals[0].say_like_cat("")
+animals[1].say_like_dog("")
+animals[2].say_like_cat("")
+animals[3].say_like_bird("")
+
+Вот только так их можно заставить говорить, по-другому никак, ведь у каждого класса свой метод отвечающий за разговор.
+Приходится знать какой тип данных соответствует каждому элементу списка animals. А если этих элементов тысячи? 
+Да, можно сделать проверку типов в цикле, но это так себе затея. Если типов будет много (читай у тебя будет много видов 
+в твоем зоопарке и каждому виду будет соответствовать какой-нибудь класс), то можно будет застрелиться. 
+Но при этом у всех у них есть функция say которая делает... ничего! Теперь реализуем классы по другому
+
+class Cat(Animal):
+    def say (word):
+        говорим Мяу
+        
+class Dog(Animal):
+    def say (word):
+        говорим Гав
+
+Теперь мы можем заставить твой зоопарк говорить вот таким образом:
+
+for animal in animals:
+    animal.say("something")
+
+И нам вообще фиолетово, сколько у нас элементов в списке, сколько у нас видов животных (== реализаций класса Animal).
+Это в двух словах о том, что такое полиморфизм. 
+
+'''
