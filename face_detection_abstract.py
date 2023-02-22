@@ -80,19 +80,19 @@ class PlasticWithFaceDetection(FaceDetectionAbstract,PlasticFace):
 
     def wight_face_with_detection(self, wight_face = '0'):
         if self.location_target_face is not None:
-            PlasticFace.wight_face(wight_face)
+            PlasticFace.wight_face_correction(wight_face)
         else:
             pass
 
     def jaw_line_with_detection(self, jaw_line='0'):
         if self.location_target_face is not None:
-            PlasticFace.jaw_line(jaw_line)
+            PlasticFace.jaw_line_correction(jaw_line)
         else:
             pass
 
     def chin_height_with_detection(self, chin_height='0'):
         if self.location_target_face is not None:
-            PlasticFace.chin_height(chin_height)
+            PlasticFace.chin_height_correction(chin_height)
         else:
             pass
 

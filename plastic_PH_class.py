@@ -15,9 +15,9 @@ eyes_height_l_point = 1238, 324
 eyes_height_r_point = 1423, 324
 
 ''' PlasticFace -> Базовый класс для пластики с учетом лица в фотошоп.
-                  Используеться, когда на фото гарантировано одно целевое лицо.
+                  Используется, когда на фото гарантировано одно целевое лицо.
                   Включает в себя обработку ошибки, если движок пластики в фотошопе
-                  не смог опредилить лицо. В таком случае обработка фото будет пропущена
+                  не смог определить лицо. В таком случае обработка фото будет пропущена
                   Подходит для пакетной обработки с циклом for'''
 
 
@@ -39,23 +39,23 @@ class PlasticFace:
             pyautogui.press('esc')
             delay_standart()
             # запоминаем есть ли ошибка распознования лиц в ФШ и
-        # соотвествнно есть ли смысл для дальнейшего выполнения методов в этом цикле
+        # соотвествено есть ли смысл для дальнейшего выполнения методов в этом цикле
 
     '''проверка на равенство аргумента 0 в этих методах не нужна, так как просто нет смысла
        запускать метод с 0 аргументом'''
 
-    def _do_smth (self, image_src: str, param : int):
-        if self.bt0 is not None:
+    #функция шаблон для класа пластики: Проверяет на ошибку распознования лица ФШ,
+    #Находит нужную кнопку по избражению и впечатывает параметр и другие важные мелочи
+    def _check_err_check_bt_enter_param (self, bt_src: str, param : int):
+        if self.bt0 is None:
+            pyautogui.moveTo(100, 100)
+            bt1 = check_button_on_screen(f'buttons2pc\\{bt_src}.png', for_confidence=.9)
+            click_on_center_button(bt1)
             delay_standart()
-            return
-        pyautogui.moveTo(100, 100)
-        bt1 = check_button_on_screen(f'buttons2pc\\{image_src}.png', for_confidence=.9)
-        click_on_center_button(bt1)
-        delay_standart()
-        pyautogui.write(str(param))
-        delay_standart()
-        pyautogui.press('enter')
-        delay_standart()
+            pyautogui.write(str(param))
+            delay_standart()
+            pyautogui.press('enter')
+            delay_standart()
 
     # ширина по-английски - width
     # по-хорошему, такие параметры как wight_face передавать не как str, а как int, а потом уже где надо делать преобразование int -> str
@@ -63,8 +63,8 @@ class PlasticFace:
     # Вот например, смотрю на функцию width_face - ширина лица. Ну и что эта функция делает с шириной лица? Мне не совсем понятно
     # Можно например так обозвать: correct_face_width (p.s. главное слово в словосочетании - это ширина,
     # а главное слово в англ. языке ставится в конце)
-    def wight_face(self, wight_face='0'):  # метод для ширины лица
-        self._do_smth('width_face', int(wight_face))
+    def wight_face_correction(self, width_face='0'):  # метод для ширины лица
+        self._check_err_check_bt_enter_param('width_face', int(width_face))
         # if self.bt0 is None:  # проверка наличие ошибки обнаружения лица в ФШ, аналогично для других методов
         #     pyautogui.moveTo(100, 100)
         #     bt1 = check_button_on_screen('buttons2pc\\width_face.png', for_confidence=.9)
@@ -78,8 +78,8 @@ class PlasticFace:
         #     pass
         # delay_standart()
 
-    def jaw_line(self, jaw_line='0'):  # метод для линии подбородка
-        self._do_smth('jaw_line', int(jaw_line))
+    def jaw_line_correction(self, jaw_line='0'):  # метод для линии подбородка
+        self._check_err_check_bt_enter_param('jaw_line', int(jaw_line))
         # if self.bt0 is None:
         #     pyautogui.moveTo(100, 100)
         #     bt1 = check_button_on_screen('buttons2pc\\jaw_line.png', for_confidence=.9)
@@ -93,8 +93,8 @@ class PlasticFace:
         #     pass
         # delay_standart()
 
-    def chin_height(self, chin_height='0'):  # метод для высоты подбородка
-        self._do_smth('chin_height', int(chin_height))
+    def chin_height_correction(self, chin_height='0'):  # метод для высоты подбородка
+        self._check_err_check_bt_enter_param('chin_height', int(chin_height))
         # if self.bt0 is None:
         #     pyautogui.moveTo(100, 100)
         #     bt1 = check_button_on_screen('buttons2pc\\chin_height.png', for_confidence=.9)
@@ -115,33 +115,31 @@ class PlasticFace:
     # Эти параметры лучше также изначально передавать как int
     def eyes_size_correction(self, eyes_size_l='0',  # метод для коррекции размера глаз
                              eyes_size_r='0', eyes_height_l='0', eyes_height_r='0'):
-        if self.bt0 is not None:
-            delay_standart()
-            return
+        if self.bt0 is  None:
 
-        # данная функция будет видна только внутри функции eyes_size_correction. Если она нужна будет где-то ещё, можно вынести её в класс
-        def func (point: tuple[int, int], size: int):
-            pyautogui.moveTo(point)
-            delay_standart()
-            pyautogui.click()
-            pyautogui.write(str(size))
-            delay_standart()
-            pyautogui.press('enter')
-            delay_standart()
+            # данная функция будет видна только внутри функции eyes_size_correction. Если она нужна будет где-то ещё, можно вынести её в класс
+            def func (point: tuple[int, int], size: int):
+                pyautogui.moveTo(point)
+                delay_standart()
+                pyautogui.click()
+                pyautogui.write(str(size))
+                delay_standart()
+                pyautogui.press('enter')
+                delay_standart()
 
-        # вот так, например, можно избавиться от лесенки из ифов
-        eyes_values = [
-            (eyes_size_l_point, eyes_size_l),
-            (eyes_size_r_point, eyes_size_r),
-            (eyes_height_l_point, eyes_height_l),
-            (eyes_height_r_point, eyes_height_r),
-        ]
-        for eye_value in eyes_values:
-            # если первое условие не выполнилось, то мы тупо выходим из цикла, и остальные условия проверяться даже и не будут
-            if eye_value[1] == '0':
-                continue  # По логике работы если eye_value==0, этот параметр пропускаем, но дальше проверять надо.
-            func(*eye_value) # это эквивалентно записи func(value[0], value[1], ..., value[n]). Таким же образом можно распаковывать не только кортежи, но и, например, списки
-        delay_standart()
+            # вот так, например, можно избавиться от лесенки из ифов
+            eyes_values = [
+                (eyes_size_l_point, eyes_size_l),
+                (eyes_size_r_point, eyes_size_r),
+                (eyes_height_l_point, eyes_height_l),
+                (eyes_height_r_point, eyes_height_r),
+            ]
+            for eye_value in eyes_values:
+                # если первое условие не выполнилось, то мы тупо выходим из цикла, и остальные условия проверяться даже и не будут
+                if eye_value[1] == '0':
+                    continue  # По логике работы если eye_value==0, этот параметр пропускаем, но дальше проверять надо.
+                func(*eye_value) # это эквивалентно записи func(value[0], value[1], ..., value[n]). Таким же образом можно распаковывать не только кортежи, но и, например, списки
+            delay_standart()
 
         # hint: для того, чтобы закомментировать несколько выделенных строк, нажми Ctrl + /
         # if eyes_size_l != '0':
@@ -280,25 +278,25 @@ class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
     # может случится ситуация когда FR лиц не нашел а ФШ нашел
     # Тогда лучше не делать ничего, чем похудить мужика или
     # применить параметры пластики к другому лицу
-    def wight_face(self, wight_face='0'):
+    def wight_face_correction(self, width_face='0'):
         # изменил название
         if self.location_target_face is not None:
-            PlasticFace.wight_face(self, wight_face)
+            PlasticFace.wight_face_correction(self, width_face)
         else:
             pass
 
-    def jaw_line(self, jaw_line='0'):
+    def jaw_line_correction(self, jaw_line='0'):
         # изменил название
         if self.location_target_face is not None:
-            PlasticFace.jaw_line(self, jaw_line)
+            PlasticFace.jaw_line_correction(self, jaw_line)
         # вообще здесь и во многих других случаях else -> pass не обязателен, можно (а может даже лучше) его убрать
         else:
             pass
 
-    def chin_height(self, chin_height='0'):
+    def chin_height_correction(self, chin_height='0'):
         # изменил название
         if self.location_target_face is not None:
-            PlasticFace.chin_height(self, chin_height)
+            PlasticFace.chin_height_correction(self, chin_height)
         else:
             pass
 
@@ -359,12 +357,12 @@ if __name__ == '__main__':
         Elena.open_plastic()
         Elena.make_work_image()
         Elena.click_on_center_target_face()
-        Elena.wight_face_with_detection(wight_face='-30')
-        Elena.jaw_line_with_detection(jaw_line='-60')
-        Elena.eyes_size_correction_with_detection(eyes_size_l='30',
+        Elena.wight_face_correction(wight_face='-30')
+        Elena.jaw_line_correction(jaw_line='-60')
+        Elena.eyes_size_correction(eyes_size_l='30',
                                                   eyes_size_r=' 30')
-        Elena.chin_height_with_detection(chin_height='20')
-        Elena.close_plastic_with_detection()
+        Elena.chin_height_correction(chin_height='20')
+        Elena.close_plastic()
 
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
