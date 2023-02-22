@@ -124,7 +124,7 @@ class PlasticFace:
             pyautogui.moveTo(point)
             delay_standart()
             pyautogui.click()
-            pyautogui.write(size)
+            pyautogui.write(str(size))
             delay_standart()
             pyautogui.press('enter')
             delay_standart()
@@ -139,7 +139,7 @@ class PlasticFace:
         for eye_value in eyes_values:
             # если первое условие не выполнилось, то мы тупо выходим из цикла, и остальные условия проверяться даже и не будут
             if eye_value[1] == '0':
-                break
+                continue  # По логике работы если eye_value==0, этот параметр пропускаем, но дальше проверять надо.
             func(*eye_value) # это эквивалентно записи func(value[0], value[1], ..., value[n]). Таким же образом можно распаковывать не только кортежи, но и, например, списки
         delay_standart()
 
