@@ -33,7 +33,7 @@ def delay_standart_long():
 
 
 def loading_pause():  # пауза для прогрузки очень долгих операций
-    time.sleep(18)
+    time.sleep(25)
 
 
 def loading_pause_short():  # пауза для прогрузки долгих операций

@@ -1,6 +1,6 @@
 import os
-from def_for_PH_batch_T2_second_PC import *
-from plastic_PH import open_plastic, plastic_face
+from def_for_PH_batch_T2 import *
+
 
 ''' Этот срипт обрабатывает любое число фото: открывая, обрабатывая и сохраняя
 по одной за раз. Обработку можно проводить по N разным алгоритмам, поместив фото
@@ -36,21 +36,23 @@ if __name__ == '__main__':
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir1, file_name)  # далее алгоритм обработки
         delay_standart_medium()
-        copy_layer()
         ph_levels1()
+        copy_layer()
+        delay_standart_medium()
+        open_nik()
+        custom_but_nik()
+        target_filter1_nik()
+        apply_nik()
+        loading_pause()
         copy_layer()
         delay_standart_medium()
         open_partiture()
         load_partiture()
-        after_partiture25()
+        after_partiture40()
         loading_pause_short()
-        copy_layer()
-        open_nik()
-        imported_but_nik()
-        target_imported1_nik()
-        apply_nik()
-        loading_pause()
+        delay_standart_long()
         save_photo_close()  # закрыть и сохранить
+        delay_standart_medium()
         delay_standart_medium()
 
     dir2 = adress_list[1]  # блок кода для папки 2
@@ -75,8 +77,8 @@ if __name__ == '__main__':
         loading_pause_short()
         copy_layer()
         open_nik()
-        imported_but_nik()
-        target_imported1_nik()
+        #imported_but_nik()
+        #target_imported1_nik()
         apply_nik()
         loading_pause()
         save_photo_close()  # закрыть и сохранить
@@ -128,8 +130,8 @@ if __name__ == '__main__':
         loading_pause_short()
         copy_layer()
         open_nik()
-        imported_but_nik()
-        target_imported2_nik()
+        #imported_but_nik()
+        #target_imported2_nik()
         apply_nik()
         loading_pause()
         save_photo_close()  # закрыть и сохранить
@@ -157,8 +159,8 @@ if __name__ == '__main__':
         loading_pause_short()
         copy_layer()
         open_nik()
-        imported_but_nik()
-        target_imported2_nik()
+        #imported_but_nik()
+        #target_imported2_nik()
         apply_nik()
         loading_pause()
         save_photo_close()  # закрыть и сохранить
@@ -184,11 +186,11 @@ if __name__ == '__main__':
         after_partiture40()
         loading_pause_short()
         delay_standart_medium()
-        open_plastic()
-        plastic_face(eyes_size_l = '7',eyes_size_r = '7', eyes_height_l = '10',
-             eyes_height_r = '10' )
+        #open_plastic()
+        #plastic_face(eyes_size_l = '7',eyes_size_r = '7', eyes_height_l = '10',
+             #eyes_height_r = '10' )
         loading_pause_short()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
-    power_off()
+    #power_off()
