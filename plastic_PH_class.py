@@ -115,18 +115,18 @@ class PlasticFace:
     # Эти параметры лучше также изначально передавать как int
     def eyes_size_correction(self, eyes_size_l='0',  # метод для коррекции размера глаз
                              eyes_size_r='0', eyes_height_l='0', eyes_height_r='0'):
-        if self.bt0 is  None:
 
-            # данная функция будет видна только внутри функции eyes_size_correction. Если она нужна будет где-то ещё, можно вынести её в класс
-            def func (point: tuple[int, int], size: int):
-                pyautogui.moveTo(point)
-                delay_standart()
-                pyautogui.click()
-                pyautogui.write(str(size))
-                delay_standart()
-                pyautogui.press('enter')
-                delay_standart()
+        # данная функция будет видна только внутри функции eyes_size_correction. Если она нужна будет где-то ещё, можно вынести её в класс
+        def move_to_point_enter_size_param(point: tuple(int, int), size: int):
+            pyautogui.moveTo(point)
+            delay_standart()
+            pyautogui.click()
+            pyautogui.write(str(size))
+            delay_standart()
+            pyautogui.press('enter')
+            delay_standart()
 
+        if self.bt0 is None:
             # вот так, например, можно избавиться от лесенки из ифов
             eyes_values = [
                 (eyes_size_l_point, eyes_size_l),
@@ -136,9 +136,9 @@ class PlasticFace:
             ]
             for eye_value in eyes_values:
                 # если первое условие не выполнилось, то мы тупо выходим из цикла, и остальные условия проверяться даже и не будут
-                if eye_value[1] == '0':
+                if eye_value == '0':
                     continue  # По логике работы если eye_value==0, этот параметр пропускаем, но дальше проверять надо.
-                func(*eye_value) # это эквивалентно записи func(value[0], value[1], ..., value[n]). Таким же образом можно распаковывать не только кортежи, но и, например, списки
+                move_to_point_enter_size_param(*eye_value) # это эквивалентно записи func(value[0], value[1], ..., value[n]). Таким же образом можно распаковывать не только кортежи, но и, например, списки
             delay_standart()
 
         # hint: для того, чтобы закомментировать несколько выделенных строк, нажми Ctrl + /
@@ -237,12 +237,13 @@ class FaceDetectionAbstract:
     И коррекцию надо сделать для 1 целевого лица
     Может рабоать и для фото с 1 персоной, но избыточен '''
 class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
+    #Передаем путь к референсному лицу и запускам пластику
     def __init__(self, path_to_reference=''):
         FaceDetectionAbstract.__init__(self, path_to_reference)
         PlasticFace.__init__(self)
     # инициализацию конструктора PlasticFace лучше также вынести в конструктор производного класса
-    def open_plastic(self):
-        PlasticFace.__init__(self)
+   #def open_plastic(self):
+    #    PlasticFace.__init__(self)
 
     # выбираем другой инструмент, что бы линии выделения лиц не попали на скриншот
     # И не мешали матчингу лиц, потом снова выбраем платику с учетом лиц,
@@ -269,8 +270,7 @@ class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
         if self.location_target_face is not None:
             pyautogui.moveTo(self.x_centr_target_face, self.y_centr_target_face)
             pyautogui.click()
-        else:
-            pass
+
 
     # для методов пластики доп проверка на на ошибку
     # распознования целевого лица через face recognition
@@ -282,23 +282,20 @@ class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
         # изменил название
         if self.location_target_face is not None:
             PlasticFace.wight_face_correction(self, width_face)
-        else:
-            pass
+
 
     def jaw_line_correction(self, jaw_line='0'):
         # изменил название
         if self.location_target_face is not None:
             PlasticFace.jaw_line_correction(self, jaw_line)
         # вообще здесь и во многих других случаях else -> pass не обязателен, можно (а может даже лучше) его убрать
-        else:
-            pass
+
 
     def chin_height_correction(self, chin_height='0'):
         # изменил название
         if self.location_target_face is not None:
             PlasticFace.chin_height_correction(self, chin_height)
-        else:
-            pass
+
 
     def eyes_size_correction(self, eyes_size_l='0', eyes_size_r='0',
                                             eyes_height_l='0', eyes_height_r='0'):
@@ -306,8 +303,7 @@ class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
         if self.location_target_face is not None:
             PlasticFace.eyes_size_correction(self, eyes_size_l, eyes_size_r,
                                              eyes_height_l, eyes_height_r)
-        else:
-            pass
+
     # в метод закрытия пластики так же добавлен вариант
     # корректного закрытия если FR не нашел целевое лицо
     # а фш - лица увидел
@@ -338,8 +334,8 @@ if __name__ == '__main__':
     for i in os.walk(dir1):
         pass
     name_files_list = i[-1]  # здесь список имен файлов в папке
-    n_photo = len(name_files_list)  # длинна списка файлов для цикла for
-    count = 0  # счетчик для for
+    #n_photo = len(name_files_list)  # длинна списка файлов для цикла for
+    #count = 0  # счетчик для for
 
     # принципиально важно итерироваться по файлам с конца? Если нет, то я бы цикл сделал примерно так:
     # for photo in name_files_list:
@@ -347,14 +343,10 @@ if __name__ == '__main__':
     #     ...
     # в таком случае можно будет отказаться от переменных o, n_photo, count.
     # Тем более переменная o не используется (и между прочем может использоваться вместо count при твоей записи цикла)
-    for o in range(n_photo):
-        count += 1
-        index = n_photo - count  # длинна списка - счетчик, получаем индекс для итерации
-        file_name = name_files_list[index]  # получаем имя файла
-        open_foto(dir1, file_name)  # далее алгоритм обработки
+    for photo in name_files_list:
+        open_foto(dir1, photo)  # далее алгоритм обработки
         delay_standart_medium()
         Elena = PlasticWithFaceDetection(path_to_reference='C:\\face_reference\\Elena.jpg')
-        Elena.open_plastic()
         Elena.make_work_image()
         Elena.click_on_center_target_face()
         Elena.wight_face_correction(wight_face='-30')
