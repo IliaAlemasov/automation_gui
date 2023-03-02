@@ -1,5 +1,5 @@
 import os
-from def_for_PH_batch_T2 import *
+from def_for_PH_batch_T2_second_PC import *
 
 
 ''' Этот срипт обрабатывает любое число фото: открывая, обрабатывая и сохраняя
@@ -40,8 +40,8 @@ if __name__ == '__main__':
         copy_layer()
         delay_standart_medium()
         open_nik()
-        custom_but_nik()
-        target_filter1_nik()
+        imported_but_nik()
+        target_imported1_nik()
         apply_nik()
         loading_pause()
         copy_layer()
@@ -52,7 +52,6 @@ if __name__ == '__main__':
         loading_pause_short()
         delay_standart_long()
         save_photo_close()  # закрыть и сохранить
-        delay_standart_medium()
         delay_standart_medium()
 
     dir2 = adress_list[1]  # блок кода для папки 2
@@ -71,16 +70,18 @@ if __name__ == '__main__':
         delay_standart_medium()
         copy_layer()
         delay_standart_medium()
-        open_partiture()
-        load_partiture()
-        after_partiture25()
-        loading_pause_short()
-        copy_layer()
         open_nik()
-        #imported_but_nik()
-        #target_imported1_nik()
+        imported_but_nik()
+        target_imported1_nik()
         apply_nik()
         loading_pause()
+        copy_layer()
+        delay_standart_medium()
+        open_partiture()
+        load_partiture()
+        after_partiture40()
+        loading_pause_short()
+        delay_standart_long()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
@@ -99,10 +100,19 @@ if __name__ == '__main__':
         open_foto(dir3, file_name)  # далее алгоритм обработки
         delay_standart_medium()
         copy_layer()
+        delay_standart_medium()
+        open_nik()
+        imported_but_nik()
+        target_imported2_nik()
+        apply_nik()
+        loading_pause()
+        copy_layer()
+        delay_standart_medium()
         open_partiture()
         load_partiture()
-        after_partiture25()
+        after_partiture40()
         loading_pause_short()
+        delay_standart_long()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
@@ -121,19 +131,19 @@ if __name__ == '__main__':
         open_foto(dir4, file_name)  # далее алгоритм обработки
         delay_standart_medium()
         copy_layer()
-        ph_levels1()
+        delay_standart_medium()
+        open_nik()
+        imported_but_nik()
+        target_imported3_nik()
+        apply_nik()
+        loading_pause()
         copy_layer()
         delay_standart_medium()
         open_partiture()
         load_partiture()
-        after_partiture25()
+        after_partiture40()
         loading_pause_short()
-        copy_layer()
-        open_nik()
-        #imported_but_nik()
-        #target_imported2_nik()
-        apply_nik()
-        loading_pause()
+        delay_standart_long()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
@@ -153,16 +163,18 @@ if __name__ == '__main__':
         delay_standart_medium()
         copy_layer()
         delay_standart_medium()
-        open_partiture()
-        load_partiture()
-        after_partiture25()
-        loading_pause_short()
-        copy_layer()
         open_nik()
-        #imported_but_nik()
-        #target_imported2_nik()
+        imported_but_nik()
+        target_imported4_nik()
         apply_nik()
         loading_pause()
+        copy_layer()
+        delay_standart_medium()
+        open_partiture()
+        load_partiture()
+        after_partiture40()
+        loading_pause_short()
+        delay_standart_long()
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
 
