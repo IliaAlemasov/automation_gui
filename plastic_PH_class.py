@@ -174,6 +174,8 @@ class FaceDetectionAbstract:
         except IndexError:  # Обработка ошибки при обращении по индексу к пустому списку
             self.location_target_face = None  # Присваиваем None что бы делать проверку в других методах
             print('Target face not fund! Please try change for_tolerance_matching')
+            print(self.location_target_face)
+            print(type(self.location_target_face))
 
     # адаптер для pyautogui.moveTo() - возвращает x,y целевого лица
     def adapter_for_pyautogui_move_to_x_y(self):
@@ -260,6 +262,8 @@ class PlasticWithFaceDetection(FaceDetectionAbstract, PlasticFace):
         if self.location_target_face is not None:
             PlasticFace.close_plastic(self)
         else:
+            pyautogui.click()
+            time.sleep(.5)
             pyautogui.press("esc")
             time.sleep(.5)
 
@@ -291,14 +295,14 @@ if __name__ == '__main__':
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir1, file_name)  # далее алгоритм обработки
         delay_standart_medium()
-        Elena = PlasticWithFaceDetection(path_to_reference='C:\\face_reference\\Elena.jpg')
+        Elena = PlasticWithFaceDetection(path_to_reference='C:\\face_reference\\Svetlana.jpg')
         Elena.open_plastic()
         Elena.make_work_image_plastic()
         Elena.click_on_center_target_face()
-        Elena.wight_face_with_detection(wight_face='-30')
-        Elena.jaw_line_with_detection(jaw_line='-60')
-        Elena.eyes_size_correction_with_detection(eyes_size_l='30',
-                                                  eyes_size_r=' 30')
+        Elena.wight_face_with_detection(wight_face='-10')
+        Elena.jaw_line_with_detection(jaw_line='-20')
+        Elena.eyes_size_correction_with_detection(eyes_size_l='5',
+                                                  eyes_size_r=' 5')
         Elena.chin_height_with_detection(chin_height='20')
         Elena.close_plastic_with_detection()
 
