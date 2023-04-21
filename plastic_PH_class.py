@@ -295,16 +295,18 @@ if __name__ == '__main__':
         file_name = name_files_list[index]  # получаем имя файла
         open_foto(dir1, file_name)  # далее алгоритм обработки
         delay_standart_medium()
-        Elena = PlasticWithFaceDetection(path_to_reference='C:\\face_reference\\Svetlana.jpg')
+        Elena = PlasticWithFaceDetection(path_to_reference='C:\\face_reference\\Tatayna1.jpg')
         Elena.open_plastic()
         Elena.make_work_image_plastic()
         Elena.click_on_center_target_face()
         Elena.wight_face_with_detection(wight_face='-10')
-        Elena.jaw_line_with_detection(jaw_line='-20')
-        Elena.eyes_size_correction_with_detection(eyes_size_l='5',
-                                                  eyes_size_r=' 5')
+        Elena.jaw_line_with_detection(jaw_line='-50')
+        Elena.eyes_size_correction_with_detection(eyes_size_l='10',
+                                                  eyes_size_r='10', eyes_height_r='5', eyes_height_l= '5')
         Elena.chin_height_with_detection(chin_height='20')
         Elena.close_plastic_with_detection()
 
         save_photo_close()  # закрыть и сохранить
         delay_standart_medium()
+
+

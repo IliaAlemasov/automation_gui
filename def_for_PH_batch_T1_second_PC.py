@@ -17,7 +17,7 @@ def delay_load_partiture():  # пауза для загрузки партрир
 
 
 def delay_load_nik_preview():  # для прогрузки предпросмотра плагинов никон
-    time.sleep(10)
+    time.sleep(11)
 
 
 def delay_standart():
@@ -25,7 +25,7 @@ def delay_standart():
 
 
 def delay_standart_medium():
-    time.sleep(4)
+    time.sleep(3.2)
 
 
 def delay_standart_long():
