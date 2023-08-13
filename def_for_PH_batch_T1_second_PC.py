@@ -33,7 +33,7 @@ def delay_standart_long():
 
 
 def loading_pause():  # пауза для прогрузки очень долгих операций
-    time.sleep(22)
+    time.sleep(72)
 
 
 def loading_pause_short():  # пауза для прогрузки долгих операций
@@ -60,7 +60,7 @@ def check_button_on_screen_single(button_path: str, for_grayscale=True, for_conf
 
 
 def check_button_on_screen_on_for(button_path: str, for_grayscale=True, for_confidence=.9):
-    for i in range(30):
+    for i in range(100):
         button = pyautogui.locateOnScreen(button_path, grayscale=for_grayscale, confidence=for_confidence)
         if button is not None:
             return (button)
