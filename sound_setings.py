@@ -7,7 +7,7 @@ def settings1_sound():
     rate = engine.getProperty('rate')
     engine.setProperty('rate', 165)
     voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[3].id)
+    engine.setProperty('voice', voices[0].id)
 
 def settings2_sound():
     engine = pyttsx3.init()

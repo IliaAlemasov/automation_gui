@@ -8,10 +8,10 @@ def del_and_shift():
     delay_before_click()
     click_on_center_button(button)
     #delay_before_click()
-    #pyautogui.press('v')
+    #pyautogui.press('v')мсм
     #delay_before_click()
     pyautogui.moveTo(1953,1735)
 
-keyboard.add_hotkey('tab ', del_and_shift)
+keyboard.add_hotkey('tab', del_and_shift)
 
 keyboard.wait()
