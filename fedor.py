@@ -14,7 +14,3 @@ elif x == "хорошо":
 else:
     fedor.say('Ничего и такое бывает')
 fedor.runAndWait()
-
-
-
-fedor.runAndWait()

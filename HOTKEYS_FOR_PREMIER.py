@@ -15,3 +15,4 @@ def del_and_shift():
 keyboard.add_hotkey('tab', del_and_shift)
 
 keyboard.wait()
+
